@@ -3,9 +3,9 @@ package study
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
-import study.calculator.Calculator
-import study.calculator.OperationInput
-import study.calculator.Operator
+import step2.calculator.Calculator
+import step2.calculator.OperationInput
+import step2.calculator.Operator
 
 /**
  * 사용자가 입력한 문자열 값에 따라 사칙 연산을 수행할 수 있는 계산기를 구현해야 한다.

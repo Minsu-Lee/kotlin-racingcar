@@ -1,4 +1,4 @@
-package study.calculator
+package step2.calculator
 
 enum class Operator(protected var char: Char?) {
     PLUS('+'),

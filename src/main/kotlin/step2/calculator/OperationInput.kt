@@ -1,4 +1,4 @@
-package study.calculator
+package step2.calculator
 
 interface OperationInput {
     val firstInput: String?
