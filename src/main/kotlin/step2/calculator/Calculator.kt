@@ -1,7 +1,7 @@
 package step2.calculator
 
 interface Calculator {
-    fun calculate(input: String?): Int
+    fun calculate(initialInput: String?): Int
 
     companion object {
         fun newInstance(): Calculator {
