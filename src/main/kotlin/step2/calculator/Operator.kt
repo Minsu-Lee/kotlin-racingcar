@@ -23,10 +23,10 @@ enum class Operator(protected var char: Char?) {
 
         fun toOperator(char: Char?): Operator {
             return when (char) {
-                '+' -> PLUS
-                '-' -> MINUS
-                '*' -> TIMES
-                '/' -> DIV
+                PLUS.char -> PLUS
+                MINUS.char -> MINUS
+                TIMES.char -> TIMES
+                DIV.char -> DIV
                 else -> toDefault(char)
             }
         }
