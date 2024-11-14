@@ -2,7 +2,10 @@ package study
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import step2.calculator.Calculator
 import step2.calculator.OperationInput
 import step2.calculator.Operator
@@ -13,6 +16,12 @@ import step2.calculator.Operator
  * 예를 들어 "2 + 3 * 4 / 2"와 같은 문자열을 입력할 경우 2 + 3 * 4 / 2 실행 결과인 10을 출력해야 한다.
  */
 class StringTest {
+    @ParameterizedTest
+    @ValueSource(chars = ['+', '-', '*', '/'])
+    fun isOperator(char: Char) {
+        assertTrue(Operator.isOperator(char))
+    }
+
     @Test
     fun `연산자 체크`() {
         assertThat("+-*/".toList()).allSatisfy {
