@@ -15,11 +15,11 @@ private class CalculatorImpl : Calculator {
         OperationInput.newInstance()
     }
 
-    override fun calculate(input: String?): Int {
+    override fun calculate(initialInput: String?): Int {
         rawInput.initialize()
-        val trimmedInput = input?.replace(" ", "")
-
-        trimmedInput?.forEach { char ->
+        val input = initialInput ?: return rawInput.getResultIntOrZero(true)
+        val trimmedInput = input.replace(" ", "")
+        trimmedInput.forEach { char ->
             if (isReadyToCalculate(char, rawInput)) {
                 val result = rawInput.getResult(true)
                 rawInput.initialize()
