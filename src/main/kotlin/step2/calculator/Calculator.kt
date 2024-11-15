@@ -11,14 +11,11 @@ object CalculatorFactory {
 }
 
 private class CalculatorImpl : Calculator {
-    private val rawInput: OperationInput by lazy {
-        OperationInputFactory.newInstance()
-    }
-
     override fun calculate(initialInput: String?): Int {
-        rawInput.initialize()
+        val rawInput = OperationInputFactory.newInstance()
         val input = initialInput ?: throw IllegalArgumentException("계산식이 입력되지 않았습니다.")
         val trimmedInput = input.replace(" ", "")
+
         trimmedInput.forEach { char ->
             if (isReadyToCalculate(char, rawInput)) {
                 val result = rawInput.getResult()
