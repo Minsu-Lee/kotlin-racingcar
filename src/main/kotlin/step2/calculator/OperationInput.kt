@@ -107,8 +107,8 @@ private class OperationInputImpl(
 
     override fun getResult(): String {
         ensureValidCalculation()
-        val arg1 = _firstInput!!.toInt()
-        val arg2 = _secondInput!!.toInt()
+        val arg1 = _firstInput?.toIntOrNull() ?: 0
+        val arg2 = _secondInput?.toIntOrNull() ?: 0
 
         val result =
             when (_operator) {
@@ -129,6 +129,7 @@ private class OperationInputImpl(
         ensureValidInputs(_firstInput, _secondInput, _operator)
         ensureValidInputs(_firstInput, _secondInput)
         ensureValidOperator(_operator)
+        ensureSafeDivision(_secondInput)
     }
 
     private fun ensureValidInputs(firstInput: String?, secondInput: String?, operator: Operator?) {
@@ -152,6 +153,12 @@ private class OperationInputImpl(
     private fun ensureValidOperator(operator: Operator?, ignoreWhitespace: Boolean = false) {
         if (!Operator.isOperator(operator) && !ignoreWhitespace) {
             throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
+        }
+    }
+
+    private fun ensureSafeDivision(secondInput: String?) {
+        if (isReady() && secondInput?.toIntOrNull() == 0) {
+            throw ArithmeticException("분모는 0이 될 수 없습니다.")
         }
     }
 

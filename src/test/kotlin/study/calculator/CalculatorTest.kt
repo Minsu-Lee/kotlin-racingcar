@@ -74,6 +74,13 @@ class CalculatorTest {
             }
             .withMessage("계산식이 입력되지 않았습니다.")
             .withNoCause()
+
+        assertThatExceptionOfType(ArithmeticException::class.java)
+            .isThrownBy {
+                calculator.calculate("10 / 0")
+            }
+            .withMessage("분모는 0이 될 수 없습니다.")
+            .withNoCause()
     }
 
     @Test
