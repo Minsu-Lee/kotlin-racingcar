@@ -74,7 +74,10 @@ private class OperationInputImpl(
 
     override fun append(input: Char) {
         when {
-            !input.isDigit() -> _operator = Operator.toOperator(input)
+            !input.isDigit() -> {
+                ensureValidOperator(true)
+                _operator = Operator.toOperator(input)
+            }
             _operator == null && _secondInput.isNullOrEmpty() -> _firstInput = (_firstInput ?: "") + input
             _operator != null -> _secondInput = (_secondInput ?: "") + input
         }
@@ -135,9 +138,13 @@ private class OperationInputImpl(
                 throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자입니다.")
             }
 
-            !validateOperator(_operator) -> {
-                throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
-            }
+            else -> ensureValidOperator()
+        }
+    }
+
+    private fun ensureValidOperator(ignoreWhitespace: Boolean = false) {
+        if (!validateOperator(_operator) && !ignoreWhitespace) {
+            throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
         }
     }
 
