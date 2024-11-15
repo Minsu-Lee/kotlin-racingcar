@@ -39,8 +39,4 @@ private class CalculatorImpl : Calculator {
     ): Boolean {
         return Operator.isOperator(char) && rawInput.isReady()
     }
-
-    private fun throwExpressionRequired() {
-        throw IllegalArgumentException("계산식이 입력되지 않았습니다.")
-    }
 }
