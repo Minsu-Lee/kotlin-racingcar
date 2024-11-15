@@ -5,7 +5,6 @@ enum class Operator(protected var char: Char?) {
     MINUS('-'),
     TIMES('*'),
     DIV('/'),
-    DEFAULT(null),
     ;
 
     companion object {
@@ -27,13 +26,7 @@ enum class Operator(protected var char: Char?) {
                 MINUS.char -> MINUS
                 TIMES.char -> TIMES
                 DIV.char -> DIV
-                else -> toDefault(char)
-            }
-        }
-
-        private fun toDefault(char: Char?): Operator {
-            return DEFAULT.apply {
-                this.char = char
+                else -> throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
             }
         }
     }

@@ -74,10 +74,7 @@ private class OperationInputImpl(
 
     override fun append(input: Char) {
         when {
-            !input.isDigit() -> {
-                ensureValidOperator(input, true)
-                _operator = Operator.toOperator(input)
-            }
+            !input.isDigit() -> _operator = Operator.toOperator(input)
             _operator == null && _secondInput.isNullOrEmpty() -> _firstInput = (_firstInput ?: "") + input
             _operator != null -> _secondInput = (_secondInput ?: "") + input
         }
@@ -111,11 +108,11 @@ private class OperationInputImpl(
         val arg2 = _secondInput?.toIntOrNull() ?: 0
 
         val result =
-            when (_operator) {
+            when (_operator!!) {
                 Operator.PLUS -> arg1.plus(arg2)
                 Operator.MINUS -> arg1.minus(arg2)
                 Operator.TIMES -> arg1.times(arg2)
-                else -> arg1.div(arg2)
+                Operator.DIV -> arg1.div(arg2)
             }
 
         return "$result"
@@ -128,31 +125,25 @@ private class OperationInputImpl(
     override fun ensureValidCalculation() {
         ensureValidInputs(_firstInput, _secondInput, _operator)
         ensureValidInputs(_firstInput, _secondInput)
-        ensureValidOperator(_operator)
         ensureSafeDivision(_secondInput)
     }
 
-    private fun ensureValidInputs(firstInput: String?, secondInput: String?, operator: Operator?) {
+    private fun ensureValidInputs(
+        firstInput: String?,
+        secondInput: String?,
+        operator: Operator?,
+    ) {
         if (!validateInputs(firstInput, secondInput, operator)) {
             throw IllegalArgumentException("계산식이 입력되지 않았습니다.")
         }
     }
 
-    private fun ensureValidInputs(firstInput: String?, secondInput: String?) {
+    private fun ensureValidInputs(
+        firstInput: String?,
+        secondInput: String?,
+    ) {
         if (!validateInputs(firstInput, secondInput)) {
             throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자입니다.")
-        }
-    }
-
-    private fun ensureValidOperator(char: Char?, ignoreWhitespace: Boolean = false) {
-        if (!Operator.isOperator(char) && !ignoreWhitespace) {
-            throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
-        }
-    }
-
-    private fun ensureValidOperator(operator: Operator?, ignoreWhitespace: Boolean = false) {
-        if (!Operator.isOperator(operator) && !ignoreWhitespace) {
-            throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
         }
     }
 
