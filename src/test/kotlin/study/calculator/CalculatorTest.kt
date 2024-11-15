@@ -1,94 +1,11 @@
-package study
+package study.calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 import step2.calculator.CalculatorFactory
-import step2.calculator.OperationInputFactory
-import step2.calculator.Operator
 
-/**
- * 사용자가 입력한 문자열 값에 따라 사칙 연산을 수행할 수 있는 계산기를 구현해야 한다.
- * 문자열 계산기는 사칙 연산의 계산 우선순위가 아닌 입력 값에 따라 계산 순서가 결정된다. 즉, 수학에서는 곱셈, 나눗셈이 덧셈, 뺄셈 보다 먼저 계산해야 하지만 이를 무시한다.
- * 예를 들어 "2 + 3 * 4 / 2"와 같은 문자열을 입력할 경우 2 + 3 * 4 / 2 실행 결과인 10을 출력해야 한다.
- */
-class StringTest {
-    @ParameterizedTest
-    @ValueSource(chars = ['+', '-', '*', '/'])
-    fun isOperator(char: Char) {
-        assertTrue(Operator.isOperator(char))
-    }
-
-    @Test
-    fun `연산자 체크`() {
-        assertThat("+-*/".toList()).allSatisfy {
-            assertThat(Operator.isOperator(it))
-                .isTrue()
-        }
-
-        assertThat(Operator.isOperator(' '))
-            .isFalse()
-
-        assertThat(Operator.isOperator('='))
-            .isFalse()
-
-        assertThat(Operator.isOperator('$'))
-            .isFalse()
-
-        assertThat(Operator.isOperator('*'))
-            .isTrue()
-    }
-
-    @Test
-    fun `데이터 초기화 테스트`() {
-        val operator = Operator.toOperator('+')
-        val data = OperationInputFactory.newInstance(firstInput = "123", secondInput = "3123", operator = operator)
-
-        data.initialize()
-        assertThat(data.firstInput).isNull()
-        assertThat(data.operator).isNull()
-        assertThat(data.secondInput).isNull()
-    }
-
-    @Test
-    fun `데이터 준비 상태 테스트`() {
-        val operator = Operator.toOperator('+')
-        val data = OperationInputFactory.newInstance(firstInput = "123", secondInput = "3123", operator = operator)
-        assertThat(data.isReady()).isTrue()
-
-        data.initialize()
-
-        data.setFirstInput("2313")
-        assertThat(data.isReady()).isFalse()
-
-        data.setSecondInput("1312312")
-        assertThat(data.isReady()).isFalse()
-
-        data.setOperator(Operator.toOperator('-'))
-        assertThat(data.isReady()).isTrue()
-    }
-
-    @Test
-    fun `데이터 입력 테스트`() {
-        val data = OperationInputFactory.newInstance()
-        data.append('1')
-        data.append('2')
-        assertThat(data.firstInput).isEqualTo("12")
-
-        data.append('+')
-        val operator = Operator.toOperator('+')
-        assertThat(data.operator).isEqualTo(operator)
-
-        data.append('3')
-        assertThat(data.secondInput).isEqualTo("3")
-
-        val result = data.getResult()
-        assertThat(result).isEqualTo("15")
-    }
-
+class CalculatorTest {
     @Test
     fun `덧셈`() {
         val calculator = CalculatorFactory.newInstance()
