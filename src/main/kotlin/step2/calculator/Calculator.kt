@@ -2,17 +2,17 @@ package step2.calculator
 
 interface Calculator {
     fun calculate(initialInput: String?): Int
+}
 
-    companion object {
-        fun newInstance(): Calculator {
-            return CalculatorImpl()
-        }
+object CalculatorFactory {
+    fun newInstance(): Calculator {
+        return CalculatorImpl()
     }
 }
 
 private class CalculatorImpl : Calculator {
     private val rawInput: OperationInput by lazy {
-        OperationInput.newInstance()
+        OperationInputFactory.newInstance()
     }
 
     override fun calculate(initialInput: String?): Int {

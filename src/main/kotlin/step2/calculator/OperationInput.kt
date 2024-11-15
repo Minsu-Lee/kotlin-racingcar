@@ -28,19 +28,19 @@ interface OperationInput {
     fun getResultIntOrZero(isInvalid: Boolean): Int
 
     fun ensureValidCalculation()
+}
 
-    companion object {
-        fun newInstance(
-            firstInput: String? = null,
-            secondInput: String? = null,
-            operator: Operator? = null,
-        ): OperationInput {
-            return OperationInputImpl(
-                firstInput,
-                secondInput,
-                operator,
-            )
-        }
+object OperationInputFactory {
+    fun newInstance(
+        firstInput: String? = null,
+        secondInput: String? = null,
+        operator: Operator? = null,
+    ): OperationInput {
+        return OperationInputImpl(
+            firstInput,
+            secondInput,
+            operator,
+        )
     }
 }
 
