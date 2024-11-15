@@ -67,6 +67,13 @@ class CalculatorTest {
             }
             .withMessage("계산식이 입력되지 않았습니다.")
             .withNoCause()
+
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy {
+                calculator.calculate("")
+            }
+            .withMessage("계산식이 입력되지 않았습니다.")
+            .withNoCause()
     }
 
     @Test

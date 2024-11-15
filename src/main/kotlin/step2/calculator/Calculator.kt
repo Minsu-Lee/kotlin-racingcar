@@ -17,11 +17,11 @@ private class CalculatorImpl : Calculator {
 
     override fun calculate(initialInput: String?): Int {
         rawInput.initialize()
-        val input = initialInput ?: return rawInput.getResultIntOrZero(true)
+        val input = initialInput ?: throw IllegalArgumentException("계산식이 입력되지 않았습니다.")
         val trimmedInput = input.replace(" ", "")
         trimmedInput.forEach { char ->
             if (isReadyToCalculate(char, rawInput)) {
-                val result = rawInput.getResult(true)
+                val result = rawInput.getResult()
                 rawInput.initialize()
                 rawInput.setFirstInput(result)
                 rawInput.setOperator(Operator.toOperator(char))
@@ -30,7 +30,7 @@ private class CalculatorImpl : Calculator {
             }
         }
 
-        return rawInput.getResultIntOrZero(true)
+        return rawInput.getResultIntOrZero()
     }
 
     private fun isReadyToCalculate(
@@ -38,5 +38,9 @@ private class CalculatorImpl : Calculator {
         rawInput: OperationInput,
     ): Boolean {
         return Operator.isOperator(char) && rawInput.isReady()
+    }
+
+    private fun throwExpressionRequired() {
+        throw IllegalArgumentException("계산식이 입력되지 않았습니다.")
     }
 }
