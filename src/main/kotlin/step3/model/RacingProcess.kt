@@ -1,42 +1,38 @@
 package step3.model
 
-import step3.view.ResultView
-
 interface RacingProcess {
     fun execute(
         carCount: Int,
         attemptCount: Int,
-        minRandomValue: Int
-    ): Array<Int>
+        minRandomValue: Int,
+    ): Array<Array<Int>>
 }
 
 object RacingProcessFactory {
-    fun newInstance(
-        randomGenerator: RandomGenerator,
-        resultView: ResultView
-    ): RacingProcess {
-        return RacingProcessImpl(randomGenerator, resultView)
+    fun newInstance(randomGenerator: RandomGenerator): RacingProcess {
+        return RacingProcessImpl(randomGenerator)
     }
 }
 
 private class RacingProcessImpl(
     private val randomGenerator: RandomGenerator,
-    private val resultView: ResultView
 ) : RacingProcess {
     override fun execute(
         carCount: Int,
         attemptCount: Int,
-        minRandomValue: Int
-    ): Array<Int> {
-        val moveCounts = Array(carCount) { 0 }
-        resultView.printOutputTitle()
+        minRandomValue: Int,
+    ): Array<Array<Int>> {
+        val moveCounts: Array<Array<Int>> =
+            Array(carCount) {
+                Array(attemptCount) { 0 }
+            }
 
-        repeat(attemptCount) {
-            repeat(carCount) { carIndex ->
+        repeat(carCount) { carIndex ->
+            repeat(attemptCount) { attemptIndex ->
                 val range = 1 until 10
                 val randomNumber = randomGenerator.generator(range = range)
                 if (randomNumber >= minRandomValue) {
-                    moveCounts[carIndex] += 1
+                    moveCounts[carIndex][attemptIndex] = 1
                 }
             }
         }

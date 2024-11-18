@@ -10,18 +10,11 @@ import step3.view.ResultView
 import step3.view.ResultViewFactroy
 
 fun main() {
-    val inputView: InputView  = InputViewFactory.newInstance()
+    val inputView: InputView = InputViewFactory.newInstance()
     val randomGenerator: RandomGenerator = RandomGeneratorFactory.newInstance()
     val resultView: ResultView = ResultViewFactroy.newInstance()
-    val racingProcess: RacingProcess = RacingProcessFactory.newInstance(
-        randomGenerator,
-        resultView
-    )
-    val racingController = RacingControllerFactory.newInstance(
-        inputView,
-        resultView,
-        racingProcess
-    )
+    val racingProcess: RacingProcess = RacingProcessFactory.newInstance(randomGenerator)
+    val racingController = RacingControllerFactory.newInstance(inputView, resultView, racingProcess)
     racingController.start()
 }
 
@@ -33,12 +26,12 @@ object RacingControllerFactory {
     fun newInstance(
         inputView: InputView,
         resultView: ResultView,
-        racingProcess: RacingProcess
+        racingProcess: RacingProcess,
     ): RacingController {
         return RacingControllerImpl(
             inputView,
             resultView,
-            racingProcess
+            racingProcess,
         )
     }
 }
@@ -46,15 +39,14 @@ object RacingControllerFactory {
 private class RacingControllerImpl(
     private val inputView: InputView,
     private val resultView: ResultView,
-    private val racingProcess: RacingProcess
-): RacingController {
-
+    private val racingProcess: RacingProcess,
+) : RacingController {
     override fun start() {
         val carCount = inputView.promptAndValidateCarCountInput()
         val attemptCount = inputView.promptAndValidateAttemptCountInput()
         val minRandomValue = 4
+        val moveSymbol = '-'
         val moveCounts = racingProcess.execute(carCount, attemptCount, minRandomValue)
-        val moveSymbol = '*'
         resultView.displayCarMovement(moveCounts, carCount, attemptCount, moveSymbol)
     }
 }

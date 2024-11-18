@@ -2,17 +2,18 @@ package step3.view
 
 sealed interface ResultView {
     fun printOutputTitle()
+
     fun displayCarMovement(
         carMoveCounts: Array<Int>,
         carIndex: Int,
-        moveSymbol: Char
+        moveSymbol: Char,
     )
 
     fun displayCarMovement(
-        moveCounts: Array<Int>,
+        moveCounts: Array<Array<Int>>,
         carCount: Int,
         attemptCount: Int,
-        moveSymbol: Char
+        moveSymbol: Char,
     )
 }
 
@@ -23,7 +24,6 @@ object ResultViewFactroy {
 }
 
 private class ResultViewImpl : ResultView {
-
     override fun printOutputTitle() {
         println("실행결과")
     }
@@ -31,7 +31,7 @@ private class ResultViewImpl : ResultView {
     override fun displayCarMovement(
         carMoveCounts: Array<Int>,
         carIndex: Int,
-        moveSymbol: Char
+        moveSymbol: Char,
     ) {
         val carMoveCount = carMoveCounts[carIndex]
         repeat(carMoveCount) {
@@ -41,15 +41,23 @@ private class ResultViewImpl : ResultView {
     }
 
     override fun displayCarMovement(
-        moveCounts: Array<Int>,
+        moveCounts: Array<Array<Int>>,
         carCount: Int,
         attemptCount: Int,
-        moveSymbol: Char
+        moveSymbol: Char,
     ) {
-        printOutputTitle()
-        repeat(attemptCount) {
+        repeat(attemptCount) { attemptIndex ->
             repeat(carCount) { carIndex ->
-                displayCarMovement(moveCounts, carIndex, moveSymbol)
+
+                val forwardNumber =
+                    moveCounts[carIndex]
+                        .slice(0..attemptIndex)
+                        .sum()
+
+                repeat((0 until forwardNumber).count()) {
+                    print(moveSymbol)
+                }
+                println()
             }
             println()
         }

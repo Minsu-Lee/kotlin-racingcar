@@ -10,7 +10,7 @@ object RandomGeneratorFactory {
     }
 }
 
-private class RandomGeneratorImpl: RandomGenerator {
+private class RandomGeneratorImpl : RandomGenerator {
     override fun generator(range: IntRange): Int {
         return range.random()
     }

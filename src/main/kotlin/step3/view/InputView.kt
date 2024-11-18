@@ -2,10 +2,15 @@ package step3.view
 
 sealed interface InputView {
     fun printCarCountQuestion()
+
     fun printAttemptCountQuestion()
+
     fun inputNumber(input: String?): Int
+
     fun promptForNumberInput(questionBlock: () -> Unit): Int
+
     fun promptAndValidateCarCountInput(): Int
+
     fun promptAndValidateAttemptCountInput(): Int
 }
 
@@ -44,7 +49,7 @@ private class InputViewImpl : InputView {
 
     private fun validateAndGetNumber(
         input: String? = readlnOrNull(),
-        questionBlock: () -> Unit
+        questionBlock: () -> Unit,
     ): Int {
         return try {
             inputNumber(input)
