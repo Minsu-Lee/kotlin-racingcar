@@ -1,7 +1,7 @@
 package step3.racing
 
 internal class RacingProcessImpl(
-    private val randomGenerator: RandomGenerator,
+    private val numberGenerator: NumberGenerator,
 ) : RacingProcess {
     override fun execute(
         carCount: Int,
@@ -16,7 +16,7 @@ internal class RacingProcessImpl(
         repeat(carCount) { carIndex ->
             repeat(attemptCount) { attemptIndex ->
                 val range = 1 until 10
-                val randomNumber = randomGenerator.generator(range = range)
+                val randomNumber = numberGenerator.generator(range = range)
                 if (randomNumber >= minRandomValue) {
                     moveCounts[carIndex][attemptIndex] = 1
                 }

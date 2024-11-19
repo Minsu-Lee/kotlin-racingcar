@@ -1,7 +1,7 @@
 package step3.racing
 
 object RandomGeneratorFactory {
-    fun newInstance(): RandomGenerator {
+    fun newInstance(): NumberGenerator {
         return RandomGeneratorImpl()
     }
 }

@@ -8,9 +8,9 @@ import step3.racing.view.ResultViewFactroy
 
 fun main() {
     val inputView: InputView = InputViewFactory.newInstance()
-    val randomGenerator: RandomGenerator = RandomGeneratorFactory.newInstance()
+    val numberGenerator: NumberGenerator = RandomGeneratorFactory.newInstance()
     val resultView: ResultView = ResultViewFactroy.newInstance()
-    val racingProcess: RacingProcess = RacingProcessFactory.newInstance(randomGenerator)
+    val racingProcess: RacingProcess = RacingProcessFactory.newInstance(numberGenerator)
     val racingController = RacingControllerFactory.newInstance(inputView, resultView, racingProcess)
     racingController.start()
 }
