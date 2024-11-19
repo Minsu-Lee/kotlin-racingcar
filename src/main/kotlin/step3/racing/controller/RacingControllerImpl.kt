@@ -8,9 +8,8 @@ import step3.racing.view.result.ResultView
 internal class RacingControllerImpl(
     private val inputView: InputView,
     private val resultView: ResultView,
-    private val numberGenerator: NumberGenerator
+    private val numberGenerator: NumberGenerator,
 ) : RacingController {
-
     override fun start() {
         val carCount = inputView.promptAndValidateCarCountInput()
         val attemptCount = inputView.promptAndValidateAttemptCountInput()
@@ -29,7 +28,7 @@ internal class RacingControllerImpl(
         return List(carCount) {
             Car(
                 forwardLimit = Car.DEFAULT_FORWARD_LIMIT,
-                numberGenerator = numberGenerator
+                numberGenerator = numberGenerator,
             )
         }
     }

@@ -9,12 +9,12 @@ object RacingControllerFactory {
     fun newInstance(
         inputView: InputView,
         resultView: ResultView,
-        numberGenerator: NumberGenerator = RandomGeneratorFactory.newInstance()
+        numberGenerator: NumberGenerator = RandomGeneratorFactory.newInstance(),
     ): RacingController {
         return RacingControllerImpl(
             inputView,
             resultView,
-            numberGenerator
+            numberGenerator,
         )
     }
 }

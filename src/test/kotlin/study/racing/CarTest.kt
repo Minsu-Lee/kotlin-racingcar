@@ -5,11 +5,10 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import step3.racing.model.generator.RandomGeneratorFactory
 import step3.racing.model.car.Car
+import step3.racing.model.generator.RandomGeneratorFactory
 
 class CarTest {
-
     @Test
     fun `주어진 횟수 동안 n대의 자동차는 4미만인 경우 멈춘다`() {
         val numberGenerator = RandomGeneratorFactory.newInstance(0..3)
@@ -28,8 +27,14 @@ class CarTest {
 
     @ParameterizedTest
     @CsvSource("0, 3", "0, 1", "2, 3")
-    fun `주어진 횟수 동안 n대의 자동차는 4미만인 경우 멈춘다 2`(randomMin: Int, randomMax: Int) {
-        val numberGenerator = RandomGeneratorFactory.newInstance(randomMin..randomMax)
+    fun `주어진 횟수 동안 n대의 자동차는 4미만인 경우 멈춘다 2`(
+        randomMin: Int,
+        randomMax: Int,
+    ) {
+        val numberGenerator =
+            RandomGeneratorFactory.newInstance(
+                randomMin..randomMax,
+            )
         val car = Car(numberGenerator = numberGenerator)
         car.move()
         car.position shouldBe 0
@@ -37,7 +42,10 @@ class CarTest {
 
     @ParameterizedTest
     @CsvSource("4, 5", "4, 9", "5, 8")
-    fun `주어진 횟수 동안 n대의 자동차는 4이상인 경우 전진한다2`(randomMin: Int, randomMax: Int) {
+    fun `주어진 횟수 동안 n대의 자동차는 4이상인 경우 전진한다2`(
+        randomMin: Int,
+        randomMax: Int,
+    ) {
         val numberGenerator = RandomGeneratorFactory.newInstance(randomMin..randomMax)
         val car = Car(numberGenerator = numberGenerator)
         car.move()
@@ -46,7 +54,10 @@ class CarTest {
 
     @ParameterizedTest
     @CsvSource("4, 5", "4, 9", "5, 8")
-    fun `사용자는 몇 대의 자동차로 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다`(carCount: Int, attemptCount: Int) {
+    fun `사용자는 몇 대의 자동차로 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다`(
+        carCount: Int,
+        attemptCount: Int,
+    ) {
         val car = Car()
         car.carCount = carCount
         car.carCount shouldBe carCount
@@ -73,4 +84,3 @@ class CarTest {
         }
     }
 }
-

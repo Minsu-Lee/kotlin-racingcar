@@ -10,7 +10,6 @@ class Car(
     private val forwardLimit: Int = DEFAULT_FORWARD_LIMIT,
     private val numberGenerator: NumberGenerator = RandomGeneratorFactory.newInstance(),
 ) {
-
     var position: Int = position
         private set
 
