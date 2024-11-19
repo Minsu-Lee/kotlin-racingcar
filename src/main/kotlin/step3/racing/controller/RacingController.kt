@@ -1,22 +1,8 @@
-package step3.controller
+package step3.racing.controller
 
-import step3.model.RacingProcess
-import step3.model.RacingProcessFactory
-import step3.model.RandomGenerator
-import step3.model.RandomGeneratorFactory
-import step3.view.InputView
-import step3.view.InputViewFactory
-import step3.view.ResultView
-import step3.view.ResultViewFactroy
-
-fun main() {
-    val inputView: InputView = InputViewFactory.newInstance()
-    val randomGenerator: RandomGenerator = RandomGeneratorFactory.newInstance()
-    val resultView: ResultView = ResultViewFactroy.newInstance()
-    val racingProcess: RacingProcess = RacingProcessFactory.newInstance(randomGenerator)
-    val racingController = RacingControllerFactory.newInstance(inputView, resultView, racingProcess)
-    racingController.start()
-}
+import step3.racing.model.RacingProcess
+import step3.racing.view.InputView
+import step3.racing.view.ResultView
 
 sealed interface RacingController {
     fun start()

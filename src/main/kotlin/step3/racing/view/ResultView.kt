@@ -1,4 +1,4 @@
-package step3.view
+package step3.racing.view
 
 sealed interface ResultView {
     fun printOutputTitle()
