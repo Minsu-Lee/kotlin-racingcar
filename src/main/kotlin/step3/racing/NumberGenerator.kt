@@ -1,5 +1,5 @@
 package step3.racing
 
-interface RandomGenerator {
+interface NumberGenerator {
     fun generator(range: IntRange): Int
 }
