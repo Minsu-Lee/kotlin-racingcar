@@ -1,23 +1,41 @@
 package step3.racing.controller
 
-import step3.racing.RacingProcess
-import step3.racing.view.InputView
-import step3.racing.view.ResultView
+import step3.racing.model.car.Car
+import step3.racing.model.generator.NumberGenerator
+import step3.racing.view.input.InputView
+import step3.racing.view.result.ResultView
 
 internal class RacingControllerImpl(
     private val inputView: InputView,
     private val resultView: ResultView,
-    private val racingProcess: RacingProcess,
+    private val numberGenerator: NumberGenerator
 ) : RacingController {
+
     override fun start() {
         val carCount = inputView.promptAndValidateCarCountInput()
         val attemptCount = inputView.promptAndValidateAttemptCountInput()
-        val moveCounts = racingProcess.execute(carCount, attemptCount, DEFAULT_MIN_RANDOM_VALUE)
-        resultView.displayCarMovement(moveCounts, carCount, attemptCount, DEFAULT_MOVE_SYMBOL)
+        println()
+
+        val cars = getCarList(carCount)
+
+        resultView.printOutputTitle()
+        repeat(attemptCount) {
+            startRound(cars)
+            resultView.displayCarMovement(cars)
+        }
     }
 
-    companion object {
-        private const val DEFAULT_MIN_RANDOM_VALUE = 4
-        private const val DEFAULT_MOVE_SYMBOL = '-'
+    private fun getCarList(carCount: Int): List<Car> {
+        return List(carCount) {
+            Car(
+                forwardLimit = Car.DEFAULT_FORWARD_LIMIT,
+                numberGenerator = numberGenerator
+            )
+        }
+    }
+
+    private fun startRound(cars: List<Car>) {
+        fun move(car: Car) = car.move()
+        cars.forEach(::move)
     }
 }

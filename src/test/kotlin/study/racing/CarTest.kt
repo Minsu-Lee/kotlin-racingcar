@@ -5,8 +5,8 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import step3.racing.RandomGeneratorFactory
-import step3.racing.model.Car
+import step3.racing.model.generator.RandomGeneratorFactory
+import step3.racing.model.car.Car
 
 class CarTest {
 

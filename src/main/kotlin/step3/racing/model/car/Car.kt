@@ -1,13 +1,13 @@
-package step3.racing.model
+package step3.racing.model.car
 
-import step3.racing.NumberGenerator
-import step3.racing.RandomGeneratorFactory
+import step3.racing.model.generator.NumberGenerator
+import step3.racing.model.generator.RandomGeneratorFactory
 
 class Car(
     var carCount: Int = DEFAULT_CAR_COUNT,
     var attemptCount: Int = DEFAULT_ATTEMPT_COUNT,
     position: Int = DEFAULT_POSITION,
-    private val minLimit: Int = DEFAULT_MIN_RANDOM_VALUE,
+    private val forwardLimit: Int = DEFAULT_FORWARD_LIMIT,
     private val numberGenerator: NumberGenerator = RandomGeneratorFactory.newInstance(),
 ) {
 
@@ -16,15 +16,16 @@ class Car(
 
     fun move() {
         val number = numberGenerator.generator()
-        move(number, minLimit)
-    }
-
-    fun move(number: Int, forwardLimit: Int) {
         validCarCount(carCount)
         validAttemptCount(attemptCount)
+
         if (number >= forwardLimit) {
             position++
         }
+    }
+
+    fun repeatSymbolForPosition(symbol: Char): String {
+        return "$symbol".repeat(position)
     }
 
     private fun validCarCount(carCount: Int) {
@@ -40,9 +41,10 @@ class Car(
     }
 
     companion object {
-        private const val DEFAULT_CAR_COUNT = 1
-        private const val DEFAULT_ATTEMPT_COUNT = 1
+        const val DEFAULT_CAR_COUNT = 1
+        const val DEFAULT_ATTEMPT_COUNT = 1
+        const val DEFAULT_FORWARD_LIMIT = 4
+        const val DEFAULT_MOVE_SYMBOL = '-'
         private const val DEFAULT_POSITION = 0
-        private const val DEFAULT_MIN_RANDOM_VALUE = 4
     }
 }
