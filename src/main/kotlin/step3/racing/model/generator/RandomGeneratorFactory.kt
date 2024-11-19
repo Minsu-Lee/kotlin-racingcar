@@ -1,4 +1,4 @@
-package step3.racing
+package step3.racing.model.generator
 
 object RandomGeneratorFactory {
     private val DEFAULT_RANDOM_RANGE = 0 .. 9
