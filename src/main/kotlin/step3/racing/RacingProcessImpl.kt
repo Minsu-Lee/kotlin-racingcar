@@ -15,8 +15,7 @@ internal class RacingProcessImpl(
 
         repeat(carCount) { carIndex ->
             repeat(attemptCount) { attemptIndex ->
-                val range = 1 until 10
-                val randomNumber = numberGenerator.generator(range = range)
+                val randomNumber = numberGenerator.generator()
                 if (randomNumber >= minRandomValue) {
                     moveCounts[carIndex][attemptIndex] = 1
                 }
