@@ -12,9 +12,12 @@ internal class RacingControllerImpl(
     override fun start() {
         val carCount = inputView.promptAndValidateCarCountInput()
         val attemptCount = inputView.promptAndValidateAttemptCountInput()
-        val minRandomValue = 4
-        val moveSymbol = '-'
-        val moveCounts = racingProcess.execute(carCount, attemptCount, minRandomValue)
-        resultView.displayCarMovement(moveCounts, carCount, attemptCount, moveSymbol)
+        val moveCounts = racingProcess.execute(carCount, attemptCount, DEFAULT_MIN_RANDOM_VALUE)
+        resultView.displayCarMovement(moveCounts, carCount, attemptCount, DEFAULT_MOVE_SYMBOL)
+    }
+
+    companion object {
+        private const val DEFAULT_MIN_RANDOM_VALUE = 4
+        private const val DEFAULT_MOVE_SYMBOL = '-'
     }
 }
