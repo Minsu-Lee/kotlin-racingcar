@@ -2,14 +2,14 @@ package study.calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step2.calculator.OperationInput
+import step2.calculator.OperationInputFactory
 import step2.calculator.Operator
 
 class OperatorInputTest {
     @Test
     fun `데이터 초기화 테스트`() {
         val operator = Operator.toOperator('+')
-        val data = OperationInput.newInstance(firstInput = "123", secondInput = "3123", operator = operator)
+        val data = OperationInputFactory.newInstance(firstInput = "123", secondInput = "3123", operator = operator)
 
         data.initialize()
         assertThat(data.firstInput).isNull()
@@ -20,7 +20,7 @@ class OperatorInputTest {
     @Test
     fun `데이터 준비 상태 테스트`() {
         val operator = Operator.toOperator('+')
-        val data = OperationInput.newInstance(firstInput = "123", secondInput = "3123", operator = operator)
+        val data = OperationInputFactory.newInstance(firstInput = "123", secondInput = "3123", operator = operator)
         assertThat(data.isReady()).isTrue()
 
         data.initialize()
@@ -37,7 +37,7 @@ class OperatorInputTest {
 
     @Test
     fun `데이터 입력 테스트`() {
-        val data = OperationInput.newInstance()
+        val data = OperationInputFactory.newInstance()
         data.append('1')
         data.append('2')
         assertThat(data.firstInput).isEqualTo("12")
@@ -55,7 +55,7 @@ class OperatorInputTest {
 
     @Test
     fun `데이터 입력 테스트2`() {
-        val data = OperationInput.newInstance()
+        val data = OperationInputFactory.newInstance()
         data.append('1')
         data.append('2')
         data.append('+')
@@ -65,7 +65,7 @@ class OperatorInputTest {
 
     @Test
     fun `데이터 입력 테스트3`() {
-        val data = OperationInput.newInstance()
+        val data = OperationInputFactory.newInstance()
         val expression = "12+3"
         expression.forEach(data::append)
         assertThat(data.isReady())
@@ -74,7 +74,7 @@ class OperatorInputTest {
 
     @Test
     fun `데이터 입력 테스트4`() {
-        val data = OperationInput.newInstance()
+        val data = OperationInputFactory.newInstance()
         val expression = "123"
         expression.forEach(data::append)
         assertThat(data.isReady())
