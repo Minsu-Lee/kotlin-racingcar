@@ -1,13 +1,28 @@
 package study.racing
 
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import step3.racing.view.input.InputViewFactory
 
 class InputViewTest {
+    @ParameterizedTest
+    @ValueSource(strings = ["    ", "q2", "1 1", "33-3", "  1"])
+    fun `숫자 입력값 검증 테스트`(input: String) {
+        val inputView = InputViewFactory.newInstance()
+        shouldThrow<IllegalArgumentException> {
+            inputView.inputNumber(input)
+        }.apply {
+            message shouldBe "숫자를 입력해주세요."
+        }
+    }
+
     @Test
-    fun `숫자 입력값 검증 테스트`() {
+    fun `숫자 입력값 검증 테스트 2`() {
         val inputView = InputViewFactory.newInstance()
         var carCountStr: String? = ""
 
