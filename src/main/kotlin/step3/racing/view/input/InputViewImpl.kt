@@ -1,26 +1,6 @@
-package step3.racing.view
+package step3.racing.view.input
 
-sealed interface InputView {
-    fun printCarCountQuestion()
-
-    fun printAttemptCountQuestion()
-
-    fun inputNumber(input: String?): Int
-
-    fun promptForNumberInput(questionBlock: () -> Unit): Int
-
-    fun promptAndValidateCarCountInput(): Int
-
-    fun promptAndValidateAttemptCountInput(): Int
-}
-
-object InputViewFactory {
-    fun newInstance(): InputView {
-        return InputViewImpl()
-    }
-}
-
-private class InputViewImpl : InputView {
+internal class InputViewImpl : InputView {
     override fun printCarCountQuestion() {
         println("자동차 대수는 몇 대인가요?")
     }
