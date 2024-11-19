@@ -3,7 +3,7 @@ package study.racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import step3.racing.view.InputViewFactory
+import step3.racing.view.input.InputViewFactory
 
 class InputViewTest {
     @Test
