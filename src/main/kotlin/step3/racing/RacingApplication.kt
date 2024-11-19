@@ -1,10 +1,6 @@
 package step3.racing
 
 import step3.racing.controller.RacingControllerFactory
-import step3.racing.model.RacingProcess
-import step3.racing.model.RacingProcessFactory
-import step3.racing.model.RandomGenerator
-import step3.racing.model.RandomGeneratorFactory
 import step3.racing.view.InputView
 import step3.racing.view.InputViewFactory
 import step3.racing.view.ResultView

@@ -1,20 +1,6 @@
-package step3.racing.model
+package step3.racing
 
-interface RacingProcess {
-    fun execute(
-        carCount: Int,
-        attemptCount: Int,
-        minRandomValue: Int,
-    ): Array<Array<Int>>
-}
-
-object RacingProcessFactory {
-    fun newInstance(randomGenerator: RandomGenerator): RacingProcess {
-        return RacingProcessImpl(randomGenerator)
-    }
-}
-
-private class RacingProcessImpl(
+internal class RacingProcessImpl(
     private val randomGenerator: RandomGenerator,
 ) : RacingProcess {
     override fun execute(
