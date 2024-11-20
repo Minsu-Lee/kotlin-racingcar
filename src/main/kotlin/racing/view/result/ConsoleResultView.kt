@@ -32,6 +32,6 @@ internal class ConsoleResultView(
     }
 
     companion object {
-        private const val DELIMITER_COMMA =", "
+        private const val DELIMITER_COMMA = ", "
     }
 }
