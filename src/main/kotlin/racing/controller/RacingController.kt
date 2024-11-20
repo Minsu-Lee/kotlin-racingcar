@@ -1,4 +1,4 @@
-package step3.racing.controller
+package racing.controller
 
 sealed interface RacingController {
     fun start()

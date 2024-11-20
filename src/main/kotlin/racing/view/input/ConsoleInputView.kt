@@ -1,4 +1,4 @@
-package step3.racing.view.input
+package racing.view.input
 
 internal class ConsoleInputView : InputView {
     override fun printCarCountQuestion() {

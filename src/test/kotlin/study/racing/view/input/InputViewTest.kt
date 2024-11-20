@@ -1,4 +1,4 @@
-package study.racing
+package study.racing.view.input
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import step3.racing.view.input.ConsoleInputViewFactory
+import racing.view.input.ConsoleInputViewFactory
 
 class InputViewTest {
     @ParameterizedTest

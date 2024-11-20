@@ -1,6 +1,6 @@
-package step3.racing.view.result
+package racing.view.result
 
-import step3.racing.model.car.Car
+import racing.model.car.Car
 
 internal class ResultViewImpl(
     private val moveSymbol: Char,
@@ -9,7 +9,7 @@ internal class ResultViewImpl(
         println("실행결과")
     }
 
-    override fun displayCarMovement(cars: List<Car>) {
+    override fun displayCarMovement(cars: List<racing.model.car.Car>) {
         cars.forEach { car ->
             val symbolTrack = car.repeatSymbolForPosition(moveSymbol)
             println(symbolTrack)

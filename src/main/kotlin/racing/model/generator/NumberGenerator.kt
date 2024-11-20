@@ -1,4 +1,4 @@
-package step3.racing.model.generator
+package racing.model.generator
 
 interface NumberGenerator {
     fun generator(): Int
