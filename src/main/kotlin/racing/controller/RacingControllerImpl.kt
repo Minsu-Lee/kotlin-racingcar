@@ -16,7 +16,6 @@ internal class RacingControllerImpl(
         inputView.handleNewLine()
 
         val cars = getCarList(carNames)
-        println("car count: ${cars.size}")
 
         resultView.printOutputTitle()
         repeat(attemptCount) {
