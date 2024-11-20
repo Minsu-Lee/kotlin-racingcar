@@ -1,6 +1,6 @@
 package step3.racing.view.input
 
-internal class InputViewImpl : InputView {
+internal class ConsoleInputView : InputView {
     override fun printCarCountQuestion() {
         println("자동차 대수는 몇 대인가요?")
     }

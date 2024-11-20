@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import step3.racing.view.input.InputViewFactory
+import step3.racing.view.input.ConsoleInputViewFactory
 
 class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = ["    ", "q2", "1 1", "33-3", "  1"])
     fun `숫자 입력값 검증 테스트`(input: String) {
-        val inputView = InputViewFactory.newInstance()
+        val inputView = ConsoleInputViewFactory.newInstance()
         shouldThrow<IllegalArgumentException> {
             inputView.inputNumber(input)
         }.apply {
@@ -23,7 +23,7 @@ class InputViewTest {
 
     @Test
     fun `숫자 입력값 검증 테스트 2`() {
-        val inputView = InputViewFactory.newInstance()
+        val inputView = ConsoleInputViewFactory.newInstance()
         var carCountStr: String? = ""
 
         var exception =

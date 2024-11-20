@@ -1,7 +1,7 @@
 package step3.racing.view.input
 
-object InputViewFactory {
+object ConsoleInputViewFactory {
     fun newInstance(): InputView {
-        return InputViewImpl()
+        return ConsoleInputView()
     }
 }
