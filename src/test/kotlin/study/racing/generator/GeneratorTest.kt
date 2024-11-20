@@ -12,11 +12,11 @@ class GeneratorTest {
         randomMin: Int,
         randomMax: Int,
     ) {
+        val randomRange = randomMin..randomMax
         val randomNumber =
             RandomGeneratorFactory.newInstance(
-                randomMin..randomMax,
-            )
-                .generator()
+                randomRange,
+            ).generator()
 
         assertThat(randomNumber)
             .isLessThanOrEqualTo(randomNumber)
