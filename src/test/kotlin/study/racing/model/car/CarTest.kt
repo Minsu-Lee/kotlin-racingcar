@@ -1,9 +1,12 @@
 package study.racing.model.car
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
+import racing.exception.InvalidCarNameException
 import racing.model.car.Car
 import racing.model.generator.RandomGeneratorFactory
 
@@ -49,5 +52,22 @@ class CarTest {
         val car = Car()
         car.move(numberGenerator = numberGenerator)
         car.position shouldBe 1
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["이민수", "이창환", "json", "minsu"])
+    fun `각 자동차에 이름을 부여할 수 있다`(name: String) {
+        val car = Car(name = name)
+        car.name shouldBe name
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["이민수루루루", "이창환느느느~", "jsonnnn~", "jacksons~"])
+    fun `자동차 이름은 5자를 초과할 수 없다`(name: String) {
+        shouldThrow<InvalidCarNameException> {
+            Car(name = name)
+        }.apply {
+            message shouldBe "자동차의 이름은 5자를 초과할 수 없습니다."
+        }
     }
 }

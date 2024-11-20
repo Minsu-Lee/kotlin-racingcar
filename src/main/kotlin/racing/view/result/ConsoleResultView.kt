@@ -2,7 +2,7 @@ package racing.view.result
 
 import racing.model.car.Car
 
-internal class ResultViewImpl(
+internal class ConsoleResultView(
     private val moveSymbol: Char,
 ) : ResultView {
     override fun printOutputTitle() {
@@ -11,8 +11,9 @@ internal class ResultViewImpl(
 
     override fun displayCarMovement(cars: List<Car>) {
         cars.forEach { car ->
+            val carName = car.name
             val symbolTrack = repeatSymbolForPosition(car.position, moveSymbol)
-            println(symbolTrack)
+            println("$carName : $symbolTrack")
         }
         println()
     }
