@@ -21,6 +21,8 @@ internal class RacingControllerImpl(
             startRound(cars)
             resultView.displayCarMovement(cars)
         }
+        val raceWinners = getRaceWinners(cars)
+        resultView.displayRaceWinners(raceWinners)
     }
 
     private fun getCarList(carNames: List<String>): List<Car> {
@@ -34,5 +36,11 @@ internal class RacingControllerImpl(
     ) {
         fun move(car: Car) = car.move(forwardLimit, numberGenerator)
         cars.forEach(::move)
+    }
+
+    private fun getRaceWinners(cars: List<Car>): List<String> {
+        val groupedByPosition = cars.groupBy { it.position }
+        val maxPosition = groupedByPosition.keys.maxOrNull()
+        return groupedByPosition[maxPosition]?.map { it.name } ?: emptyList()
     }
 }

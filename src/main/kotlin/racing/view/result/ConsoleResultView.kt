@@ -25,4 +25,13 @@ internal class ConsoleResultView(
     ): String {
         return "$symbol".repeat(position)
     }
+
+    override fun displayRaceWinners(carNames: List<String>) {
+        val winners = carNames.joinToString(DELIMITER_COMMA)
+        println("${winners}가 최종 우승했습니다.")
+    }
+
+    companion object {
+        private const val DELIMITER_COMMA =", "
+    }
 }
