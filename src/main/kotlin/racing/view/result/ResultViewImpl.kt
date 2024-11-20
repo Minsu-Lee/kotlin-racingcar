@@ -9,7 +9,7 @@ internal class ResultViewImpl(
         println("실행결과")
     }
 
-    override fun displayCarMovement(cars: List<racing.model.car.Car>) {
+    override fun displayCarMovement(cars: List<Car>) {
         cars.forEach { car ->
             val symbolTrack = car.repeatSymbolForPosition(moveSymbol)
             println(symbolTrack)

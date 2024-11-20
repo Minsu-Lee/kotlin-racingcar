@@ -4,11 +4,11 @@ import racing.model.generator.NumberGenerator
 import racing.model.generator.RandomGeneratorFactory
 
 class Car(
-    var carCount: Int = racing.model.car.Car.Companion.DEFAULT_CAR_COUNT,
-    var attemptCount: Int = racing.model.car.Car.Companion.DEFAULT_ATTEMPT_COUNT,
-    position: Int = racing.model.car.Car.Companion.DEFAULT_POSITION,
-    private val forwardLimit: Int = racing.model.car.Car.Companion.DEFAULT_FORWARD_LIMIT,
-    private val numberGenerator: racing.model.generator.NumberGenerator = RandomGeneratorFactory.newInstance(),
+    var carCount: Int = DEFAULT_CAR_COUNT,
+    var attemptCount: Int = DEFAULT_ATTEMPT_COUNT,
+    position: Int = DEFAULT_POSITION,
+    private val forwardLimit: Int = DEFAULT_FORWARD_LIMIT,
+    private val numberGenerator: NumberGenerator = RandomGeneratorFactory.newInstance(),
 ) {
     var position: Int = position
         private set

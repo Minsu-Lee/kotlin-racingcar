@@ -8,7 +8,7 @@ import racing.view.result.ResultView
 internal class RacingControllerImpl(
     private val inputView: InputView,
     private val resultView: ResultView,
-    private val numberGenerator: racing.model.generator.NumberGenerator,
+    private val numberGenerator: NumberGenerator,
 ) : RacingController {
     override fun start() {
         val carCount = inputView.promptAndValidateCarCountInput()
@@ -24,17 +24,17 @@ internal class RacingControllerImpl(
         }
     }
 
-    private fun getCarList(carCount: Int): List<racing.model.car.Car> {
+    private fun getCarList(carCount: Int): List<Car> {
         return List(carCount) {
-            racing.model.car.Car(
-                forwardLimit = racing.model.car.Car.DEFAULT_FORWARD_LIMIT,
+            Car(
+                forwardLimit = Car.DEFAULT_FORWARD_LIMIT,
                 numberGenerator = numberGenerator,
             )
         }
     }
 
-    private fun startRound(cars: List<racing.model.car.Car>) {
-        fun move(car: racing.model.car.Car) = car.move()
+    private fun startRound(cars: List<Car>) {
+        fun move(car: Car) = car.move()
         cars.forEach(::move)
     }
 }

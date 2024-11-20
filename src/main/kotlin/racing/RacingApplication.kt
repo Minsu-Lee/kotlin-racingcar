@@ -11,7 +11,7 @@ import racing.view.result.ResultView
 fun main() {
     val inputView: InputView = ConsoleInputViewFactory.newInstance()
     val resultView: ResultView = ResultFactory.newInstance()
-    val numberGenerator: racing.model.generator.NumberGenerator = RandomGeneratorFactory.newInstance()
+    val numberGenerator: NumberGenerator = RandomGeneratorFactory.newInstance()
     val racingController = RacingControllerFactory.newInstance(inputView, resultView, numberGenerator)
     racingController.start()
 }
