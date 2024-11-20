@@ -23,10 +23,6 @@ class Car(
         }
     }
 
-    fun repeatSymbolForPosition(symbol: Char): String {
-        return "$symbol".repeat(position)
-    }
-
     private fun validCarCount(carCount: Int) {
         if (carCount == 0) {
             throw IllegalArgumentException("자동차 대수는 최소 1대 이상이어야 합니다.")
