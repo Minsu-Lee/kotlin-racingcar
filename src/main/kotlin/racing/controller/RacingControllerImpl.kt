@@ -13,7 +13,7 @@ internal class RacingControllerImpl(
     override fun start() {
         val carCount = inputView.promptAndValidateCarCountInput()
         val attemptCount = inputView.promptAndValidateAttemptCountInput()
-        println()
+        inputView.handleNewLine()
 
         val cars = getCarList(carCount)
 

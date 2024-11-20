@@ -5,6 +5,8 @@ sealed interface InputView {
 
     fun printAttemptCountQuestion()
 
+    fun handleNewLine()
+
     fun inputNumber(input: String?): Int
 
     fun promptForNumberInput(questionBlock: () -> Unit): Int

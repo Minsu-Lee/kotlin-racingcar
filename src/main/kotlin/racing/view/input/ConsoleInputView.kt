@@ -9,6 +9,10 @@ internal class ConsoleInputView : InputView {
         println("시도할 횟수는 몇 회인가요?")
     }
 
+    override fun handleNewLine() {
+        println()
+    }
+
     override fun inputNumber(input: String?): Int {
         return validateIntInput(input).toInt()
     }
