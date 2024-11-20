@@ -1,17 +1,21 @@
 package racing.view.input
 
 sealed interface InputView {
-    fun printCarCountQuestion()
+    fun displayCarNamesQuestion()
 
-    fun printAttemptCountQuestion()
+    fun displayAttemptCountQuestion()
 
     fun handleNewLine()
 
+    fun inputCarNames(input: String?): List<String>
+
     fun inputNumber(input: String?): Int
+
+    fun promptForCharNames(questionBlock: () -> Unit): List<String>
 
     fun promptForNumberInput(questionBlock: () -> Unit): Int
 
-    fun promptAndValidateCarCountInput(): Int
+    fun promptAndValidateCarNamesInput(): List<String>
 
     fun promptAndValidateAttemptCountInput(): Int
 }

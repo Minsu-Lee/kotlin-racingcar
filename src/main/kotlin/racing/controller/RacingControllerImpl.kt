@@ -11,11 +11,12 @@ internal class RacingControllerImpl(
     private val numberGenerator: NumberGenerator,
 ) : RacingController {
     override fun start() {
-        val carCount = inputView.promptAndValidateCarCountInput()
+        val carNames = inputView.promptAndValidateCarNamesInput()
         val attemptCount = inputView.promptAndValidateAttemptCountInput()
         inputView.handleNewLine()
 
-        val cars = getCarList(carCount)
+        val cars = getCarList(carNames)
+        println("car count: ${cars.size}")
 
         resultView.printOutputTitle()
         repeat(attemptCount) {
@@ -24,7 +25,9 @@ internal class RacingControllerImpl(
         }
     }
 
-    private fun getCarList(carCount: Int): List<Car> = List(carCount) { Car() }
+    private fun getCarList(carNames: List<String>): List<Car> {
+        return carNames.map { name -> Car(name = name) }
+    }
 
     private fun startRound(
         cars: List<Car>,

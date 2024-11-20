@@ -1,5 +1,6 @@
 package study.racing.view.input
 
+import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
@@ -76,5 +77,25 @@ class InputViewTest {
 
         assertThat(inputView.inputNumber(carCountStr))
             .isEqualTo(10)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["pobi231123", "crong~~", "hondux", "민수르수르르", "수민수민수민수", "스르스르스스스"])
+    fun `자동차 이름 5자 이내 입력 태스트`(carName: String) {
+        val inputView = ConsoleInputViewFactory.newInstance()
+        shouldThrow<IllegalArgumentException> {
+            inputView.inputCarNames(carName)
+        }.apply {
+            message shouldBe "자동차 이름은 5자를 초과할 수 없습니다."
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["민수", "수민", "수박", "pobi", "crong", "honux"])
+    fun `자동차 이름 5자 초과 입력 테스트`(carName: String) {
+        val inputView = ConsoleInputViewFactory.newInstance()
+        shouldNotThrow<IllegalArgumentException> {
+            inputView.inputCarNames(carName)
+        }
     }
 }
