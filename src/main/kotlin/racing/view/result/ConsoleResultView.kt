@@ -6,6 +6,7 @@ internal class ConsoleResultView(
     private val moveSymbol: Char,
 ) : ResultView {
     override fun printOutputTitle() {
+        println()
         println("실행결과")
     }
 

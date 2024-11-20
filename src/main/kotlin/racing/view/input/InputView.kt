@@ -5,8 +5,6 @@ sealed interface InputView {
 
     fun displayAttemptCountQuestion()
 
-    fun handleNewLine()
-
     fun inputCarNames(input: String?): List<String>
 
     fun inputNumber(input: String?): Int

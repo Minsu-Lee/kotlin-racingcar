@@ -9,10 +9,6 @@ internal class ConsoleInputView : InputView {
         println("시도할 횟수는 몇 회인가요?")
     }
 
-    override fun handleNewLine() {
-        println()
-    }
-
     override fun inputCarNames(input: String?): List<String> {
         val validatedInput = validateCarNamesInput(input)
         return validatedInput.split(DELIMITER_COMMA).map { it.trim() }
