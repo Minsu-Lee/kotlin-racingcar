@@ -24,17 +24,14 @@ internal class RacingControllerImpl(
         }
     }
 
-    private fun getCarList(carCount: Int): List<Car> {
-        return List(carCount) {
-            Car(
-                forwardLimit = Car.DEFAULT_FORWARD_LIMIT,
-                numberGenerator = numberGenerator,
-            )
-        }
-    }
+    private fun getCarList(carCount: Int): List<Car> = List(carCount) { Car() }
 
-    private fun startRound(cars: List<Car>) {
-        fun move(car: Car) = car.move()
+    private fun startRound(
+        cars: List<Car>,
+        forwardLimit: Int = Car.DEFAULT_FORWARD_LIMIT,
+        numberGenerator: NumberGenerator = this.numberGenerator,
+    ) {
+        fun move(car: Car) = car.move(forwardLimit, numberGenerator)
         cars.forEach(::move)
     }
 }
