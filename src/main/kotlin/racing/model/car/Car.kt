@@ -20,7 +20,6 @@ class Car(
 
     companion object {
         const val DEFAULT_FORWARD_LIMIT = 4
-        const val DEFAULT_MOVE_SYMBOL = '-'
         private const val DEFAULT_POSITION = 0
     }
 }
