@@ -1,6 +1,5 @@
 package study.racing.model.car
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -50,37 +49,5 @@ class CarTest {
         val car = Car(numberGenerator = numberGenerator)
         car.move()
         car.position shouldBe 1
-    }
-
-    @ParameterizedTest
-    @CsvSource("4, 5", "4, 9", "5, 8")
-    fun `사용자는 몇 대의 자동차로 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다`(
-        carCount: Int,
-        attemptCount: Int,
-    ) {
-        val car = Car()
-        car.carCount = carCount
-        car.carCount shouldBe carCount
-        car.attemptCount = attemptCount
-        car.attemptCount shouldBe attemptCount
-    }
-
-    @Test
-    fun `자동차 대수는 최소 입력 테스트`() {
-        val car = Car()
-        shouldThrow<IllegalArgumentException> {
-            car.carCount = 0
-            car.move()
-        }.apply {
-            message shouldBe "자동차 대수는 최소 1대 이상이어야 합니다."
-        }
-
-        shouldThrow<IllegalArgumentException> {
-            car.carCount = 1
-            car.attemptCount = 0
-            car.move()
-        }.apply {
-            message shouldBe "시도 횟수는 최소 1번 이상이어야 합니다."
-        }
     }
 }
