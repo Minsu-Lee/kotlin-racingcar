@@ -2,7 +2,6 @@ package racing.model.car
 
 import racing.exception.InvalidCarNameException
 import racing.service.generator.NumberGenerator
-import racing.service.generator.RandomGeneratorFactory
 
 class Car(
     name: String = "",
@@ -12,11 +11,6 @@ class Car(
 
     var position: Int = position
         private set
-
-    fun move() {
-        val numberGenerator = RandomGeneratorFactory.newInstance()
-        move(DEFAULT_FORWARD_LIMIT, numberGenerator)
-    }
 
     fun move(
         forwardLimit: Int = DEFAULT_FORWARD_LIMIT,
