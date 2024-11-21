@@ -1,6 +1,6 @@
 package racing.view.input
 
-sealed interface InputView {
+interface InputView {
     fun displayCarNamesQuestion()
 
     fun displayAttemptCountQuestion()

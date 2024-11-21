@@ -2,7 +2,7 @@ package racing.view.result
 
 import racing.model.car.Car
 
-sealed interface ResultView {
+interface ResultView {
     fun printOutputTitle()
 
     fun displayCarMovement(cars: List<Car>)
