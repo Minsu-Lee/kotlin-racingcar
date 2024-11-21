@@ -19,13 +19,13 @@ internal class ConsoleInputView : InputView {
     }
 
     override fun promptForCharNames(questionBlock: () -> Unit): List<String> {
-        questionBlock.invoke()
+        questionBlock()
         val inputCarNames = validateAndGetCarNames(questionBlock = questionBlock)
         return inputCarNames
     }
 
     override fun promptForNumberInput(questionBlock: () -> Unit): Int {
-        questionBlock.invoke()
+        questionBlock()
         val inputNumber = validateAndGetNumber(questionBlock = questionBlock)
         return inputNumber
     }
@@ -45,8 +45,7 @@ internal class ConsoleInputView : InputView {
         return try {
             inputCarNames(input)
         } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-            questionBlock.invoke()
+            questionBlock()
             validateAndGetCarNames(questionBlock = questionBlock)
         }
     }
@@ -58,7 +57,7 @@ internal class ConsoleInputView : InputView {
         return try {
             inputNumber(input)
         } catch (e: IllegalArgumentException) {
-            questionBlock.invoke()
+            questionBlock()
             validateAndGetNumber(questionBlock = questionBlock)
         }
     }
@@ -66,7 +65,7 @@ internal class ConsoleInputView : InputView {
     private fun validateCarNamesInput(input: String?): String {
         require(!input.isNullOrEmpty()) { "입력값을 확인해주세요." }
         require(input.split(DELIMITER_COMMA).none { it.trim().length > 5 }) {
-            "자동차 이름은 5자를 초과할 수 없습니다."
+            "자동차 이름은 ${DEFAULT_NAME_MAX}자를 초과할 수 없습니다."
         }
         return input
     }
@@ -80,5 +79,6 @@ internal class ConsoleInputView : InputView {
 
     companion object {
         private const val DELIMITER_COMMA = ','
+        private const val DEFAULT_NAME_MAX = 5
     }
 }
