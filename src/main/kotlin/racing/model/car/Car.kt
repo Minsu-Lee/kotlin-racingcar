@@ -8,8 +8,7 @@ class Car(
     name: String = "",
     position: Int = DEFAULT_POSITION,
 ) {
-    var name: String = validateNameLength(name)
-        private set
+    val name: String = validateNameLength(name)
 
     var position: Int = position
         private set

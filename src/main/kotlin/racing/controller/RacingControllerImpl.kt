@@ -38,8 +38,7 @@ class RacingControllerImpl(
         forwardLimit: Int,
         numberGenerator: NumberGenerator,
     ) {
-        fun move(car: Car) = car.move(forwardLimit, numberGenerator)
-        cars.forEach(::move)
+        cars.forEach { it.move(forwardLimit, numberGenerator) }
     }
 
     override fun getRaceWinners(cars: List<Car>): List<String> {
