@@ -1,4 +1,4 @@
-package study.calculator
+package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import step2.calculator.Operator
+import calculator.Operator
 
 class OperatorTest {
     @ParameterizedTest

@@ -1,7 +1,7 @@
 package racing.controller
 
-import racing.model.generator.NumberGenerator
-import racing.model.generator.RandomGeneratorFactory
+import racing.service.generator.NumberGenerator
+import racing.service.generator.RandomGeneratorFactory
 import racing.view.input.InputView
 import racing.view.result.ResultView
 

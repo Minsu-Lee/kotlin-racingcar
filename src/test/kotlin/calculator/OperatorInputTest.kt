@@ -1,9 +1,9 @@
-package study.calculator
+package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step2.calculator.OperationInputFactory
-import step2.calculator.Operator
+import calculator.OperationInputFactory
+import calculator.Operator
 
 class OperatorInputTest {
     @Test

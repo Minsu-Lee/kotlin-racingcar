@@ -1,4 +1,4 @@
-package racing.model.generator
+package racing.service.generator
 
 interface NumberGenerator {
     fun generator(): Int

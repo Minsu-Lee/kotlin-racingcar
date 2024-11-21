@@ -1,4 +1,4 @@
-package step2.calculator
+package calculator
 
 sealed interface OperationInput {
     val firstInput: String?

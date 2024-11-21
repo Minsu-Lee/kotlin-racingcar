@@ -1,7 +1,7 @@
 package racing.controller
 
 import racing.model.car.Car
-import racing.model.generator.NumberGenerator
+import racing.service.generator.NumberGenerator
 import racing.view.input.InputView
 import racing.view.result.ResultView
 

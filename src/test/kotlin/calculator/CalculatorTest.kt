@@ -1,9 +1,9 @@
-package study.calculator
+package calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
-import step2.calculator.CalculatorFactory
+import calculator.CalculatorFactory
 
 class CalculatorTest {
     @Test

@@ -1,4 +1,4 @@
-package study.racing.model.car
+package racing.model.car
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import racing.exception.InvalidCarNameException
 import racing.model.car.Car
-import racing.model.generator.RandomGeneratorFactory
+import racing.service.generator.RandomGeneratorFactory
 
 class CarTest {
     @Test

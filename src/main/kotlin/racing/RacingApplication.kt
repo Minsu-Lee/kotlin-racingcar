@@ -1,8 +1,8 @@
 package racing
 
 import racing.controller.RacingControllerFactory
-import racing.model.generator.NumberGenerator
-import racing.model.generator.RandomGeneratorFactory
+import racing.service.generator.NumberGenerator
+import racing.service.generator.RandomGeneratorFactory
 import racing.view.input.ConsoleInputViewFactory
 import racing.view.input.InputView
 import racing.view.result.ConsoleResultViewFactory

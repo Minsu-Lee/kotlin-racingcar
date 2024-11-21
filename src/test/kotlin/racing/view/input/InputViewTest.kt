@@ -1,4 +1,4 @@
-package study.racing.view.input
+package racing.view.input
 
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow

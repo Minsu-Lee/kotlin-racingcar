@@ -1,4 +1,4 @@
-package racing.model.generator
+package racing.service.generator
 
 object RandomGeneratorFactory {
     private val DEFAULT_RANDOM_RANGE = 0..9

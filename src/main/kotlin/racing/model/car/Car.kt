@@ -1,8 +1,8 @@
 package racing.model.car
 
 import racing.exception.InvalidCarNameException
-import racing.model.generator.NumberGenerator
-import racing.model.generator.RandomGeneratorFactory
+import racing.service.generator.NumberGenerator
+import racing.service.generator.RandomGeneratorFactory
 
 class Car(
     name: String = "",
