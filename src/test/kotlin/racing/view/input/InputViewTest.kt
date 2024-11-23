@@ -54,7 +54,6 @@ class InputViewTest {
         }
     }
 
-
     @ParameterizedTest
     @ValueSource(strings = ["0", "-20", "-1"])
     fun `숫자 입력, 최소입력 검증`(input: String) {
@@ -76,7 +75,6 @@ class InputViewTest {
             message shouldBe "숫자를 입력해주세요."
         }
     }
-
 
     @ParameterizedTest
     @ValueSource(strings = ["3", "10", "4"])

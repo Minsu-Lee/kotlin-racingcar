@@ -6,11 +6,11 @@ import racing.view.result.ResultView
 object RacingControllerFactory {
     fun newInstance(
         inputView: InputView,
-        resultView: ResultView
+        resultView: ResultView,
     ): RacingController {
         return RacingControllerImpl(
             inputView,
-            resultView
+            resultView,
         )
     }
 }

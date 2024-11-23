@@ -16,15 +16,17 @@ class ControllerTest {
         ],
     )
     fun `자동차 경주가 시작되면 1명 이상의 우승자가 결정된다`(input: String) {
-        val inputView = MockInputViewImpl(
-            rawCarNameInput = input,
-            rawAttemptCountInput = "45"
-        )
-        val resultView = MockResultView(
-            displayRaceWinnersBlock = { winners ->
-                winners.size shouldBeGreaterThanOrEqual 1
-            }
-        )
+        val inputView =
+            MockInputViewImpl(
+                rawCarNameInput = input,
+                rawAttemptCountInput = "45",
+            )
+        val resultView =
+            MockResultView(
+                displayRaceWinnersBlock = { winners ->
+                    winners.size shouldBeGreaterThanOrEqual 1
+                },
+            )
         val controller = RacingControllerFactory.newInstance(inputView, resultView)
         controller.start()
     }

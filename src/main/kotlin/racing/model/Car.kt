@@ -5,16 +5,15 @@ import racing.exception.InvalidCarNameException
 class Car(
     position: Int,
     val name: String,
-    private val engine: Engine
+    private val engine: Engine,
 ) {
-
     init {
         validateNameLength(name)
     }
 
-    constructor(name: String, engine: Engine): this(DEFAULT_POSITION, name, engine)
-    constructor(engine: Engine): this("", engine)
-    constructor(name: String): this(name, DEFAULT_ENGINE)
+    constructor(name: String, engine: Engine) : this(DEFAULT_POSITION, name, engine)
+    constructor(engine: Engine) : this("", engine)
+    constructor(name: String) : this(name, DEFAULT_ENGINE)
 
     var position: Int = position
         private set

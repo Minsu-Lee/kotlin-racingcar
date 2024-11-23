@@ -10,13 +10,16 @@ internal class ConsoleResultView(
         println("실행결과")
     }
 
-    override fun displayCarMovement(cars: List<Car>) {
-        cars.forEach { car ->
-            val carName = car.name
-            val symbolTrack = repeatSymbolForPosition(car.position, moveSymbol)
-            println("$carName : $symbolTrack")
+    override fun displayCarMovement(
+        car: Car,
+        hasRoundEnded: Boolean,
+    ) {
+        val carName = car.name
+        val symbolTrack = repeatSymbolForPosition(car.position, moveSymbol)
+        println("$carName : $symbolTrack")
+        if (hasRoundEnded) {
+            println()
         }
-        println()
     }
 
     private fun repeatSymbolForPosition(

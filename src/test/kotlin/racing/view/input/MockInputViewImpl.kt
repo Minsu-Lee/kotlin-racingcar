@@ -5,10 +5,9 @@ import racing.view.input.ConsoleInputView.Companion.DELIMITER_COMMA
 
 class MockInputViewImpl(
     private val rawCarNameInput: String?,
-    private val rawAttemptCountInput: String?
+    private val rawAttemptCountInput: String?,
 ) : MockInputView {
-
-    constructor(): this("", "")
+    constructor() : this("", "")
 
     override fun inputCarNames(input: String?): List<String> {
         val validatedInput = validateCarNamesInput(input)
@@ -27,7 +26,7 @@ class MockInputViewImpl(
 
     private fun promptForNumberInput(questionBlock: () -> Unit = {}): Int {
         questionBlock()
-        val inputNumber = validateAndGetNumber(input  = rawAttemptCountInput, questionBlock = questionBlock)
+        val inputNumber = validateAndGetNumber(input = rawAttemptCountInput, questionBlock = questionBlock)
         return inputNumber
     }
 

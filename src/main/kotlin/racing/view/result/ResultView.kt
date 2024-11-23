@@ -5,7 +5,10 @@ import racing.model.Car
 interface ResultView {
     fun printOutputTitle()
 
-    fun displayCarMovement(cars: List<Car>)
+    fun displayCarMovement(
+        car: Car,
+        hasRoundEnded: Boolean,
+    )
 
     fun displayRaceWinners(carNames: List<String>)
 }
