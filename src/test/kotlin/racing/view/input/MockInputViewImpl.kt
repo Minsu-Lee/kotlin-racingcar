@@ -1,45 +1,46 @@
 package racing.view.input
 
-internal class ConsoleInputView : InputView {
-    private fun displayCarNamesQuestion() {
-        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    }
+import racing.view.input.ConsoleInputView.Companion.DEFAULT_NAME_MAX
+import racing.view.input.ConsoleInputView.Companion.DELIMITER_COMMA
 
-    private fun displayAttemptCountQuestion() {
-        println("시도할 횟수는 몇 회인가요?")
-    }
+class MockInputViewImpl(
+    private val rawCarNameInput: String?,
+    private val rawAttemptCountInput: String?
+) : MockInputView {
 
-    private fun inputCarNames(input: String?): List<String> {
+    constructor(): this("", "")
+
+    override fun inputCarNames(input: String?): List<String> {
         val validatedInput = validateCarNamesInput(input)
         return validatedInput.split(DELIMITER_COMMA).map { it.trim() }
     }
 
-    private fun inputNumber(input: String?): Int {
+    override fun inputNumber(input: String?): Int {
         return validateIntInput(input).toInt()
     }
 
-    private fun promptForCharNames(questionBlock: () -> Unit): List<String> {
+    private fun promptForCharNames(questionBlock: () -> Unit = {}): List<String> {
         questionBlock()
-        val inputCarNames = validateAndGetCarNames(questionBlock = questionBlock)
+        val inputCarNames = validateAndGetCarNames(input = rawCarNameInput, questionBlock = questionBlock)
         return inputCarNames
     }
 
-    private fun promptForNumberInput(questionBlock: () -> Unit): Int {
+    private fun promptForNumberInput(questionBlock: () -> Unit = {}): Int {
         questionBlock()
-        val inputNumber = validateAndGetNumber(questionBlock = questionBlock)
+        val inputNumber = validateAndGetNumber(input  = rawAttemptCountInput, questionBlock = questionBlock)
         return inputNumber
     }
 
     override fun promptAndValidateCarNamesInput(): List<String> {
-        return promptForCharNames(::displayCarNamesQuestion)
+        return promptForCharNames()
     }
 
     override fun promptAndValidateAttemptCountInput(): Int {
-        return promptForNumberInput(::displayAttemptCountQuestion)
+        return promptForNumberInput()
     }
 
     private fun validateAndGetCarNames(
-        input: String? = readlnOrNull(),
+        input: String? = rawCarNameInput,
         questionBlock: () -> Unit,
     ): List<String> {
         return try {
@@ -51,7 +52,7 @@ internal class ConsoleInputView : InputView {
     }
 
     private fun validateAndGetNumber(
-        input: String? = readlnOrNull(),
+        input: String? = rawCarNameInput,
         questionBlock: () -> Unit,
     ): Int {
         return try {
@@ -75,10 +76,5 @@ internal class ConsoleInputView : InputView {
         require(input.toIntOrNull() != null) { "숫자를 입력해주세요." }
         require(input.toInt() > 0) { "최소 0보다 큰수를 입력해주세요." }
         return input
-    }
-
-    companion object {
-        const val DELIMITER_COMMA = ','
-        const val DEFAULT_NAME_MAX = 5
     }
 }
