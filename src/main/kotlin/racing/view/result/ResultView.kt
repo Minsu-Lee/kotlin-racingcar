@@ -1,6 +1,6 @@
 package racing.view.result
 
-import racing.model.car.Car
+import racing.model.Car
 
 interface ResultView {
     fun printOutputTitle()

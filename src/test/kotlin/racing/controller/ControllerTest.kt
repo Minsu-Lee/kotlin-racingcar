@@ -25,8 +25,7 @@ class ControllerTest {
                 winners.size shouldBeGreaterThanOrEqual 1
             }
         )
-        val numberGenerator = MockRandomGeneratorFactory.newInstance(0..9)
-        val controller = RacingControllerFactory.newInstance(inputView, resultView, numberGenerator)
+        val controller = RacingControllerFactory.newInstance(inputView, resultView)
         controller.start()
     }
 }

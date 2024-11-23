@@ -1,14 +1,13 @@
 package racing.controller
 
-import racing.model.car.Car
-import racing.service.generator.NumberGenerator
+import racing.model.Car
+import racing.model.Engine
 import racing.view.input.InputView
 import racing.view.result.ResultView
 
 class RacingControllerImpl(
     private val inputView: InputView,
-    private val resultView: ResultView,
-    private val numberGenerator: NumberGenerator,
+    private val resultView: ResultView
 ) : RacingController {
     override fun start() {
         val carNames = inputView.promptAndValidateCarNamesInput()
@@ -26,19 +25,19 @@ class RacingControllerImpl(
     }
 
     override fun getCarList(carNames: List<String>): List<Car> {
-        return carNames.map { name -> Car(name = name) }
+        val engine = Engine(0..9)
+        return carNames.map { name -> Car(name, engine) }
     }
 
     override fun startRound(cars: List<Car>) {
-        startRound(cars, Car.DEFAULT_FORWARD_LIMIT, this.numberGenerator)
+        startRound(cars, Car.DEFAULT_FORWARD_LIMIT)
     }
 
     override fun startRound(
         cars: List<Car>,
-        forwardLimit: Int,
-        numberGenerator: NumberGenerator,
+        forwardLimit: Int
     ) {
-        cars.forEach { it.move(forwardLimit, numberGenerator) }
+        cars.forEach { it.move(forwardLimit) }
     }
 
     override fun getRaceWinners(cars: List<Car>): List<String> {

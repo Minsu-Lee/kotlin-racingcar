@@ -1,23 +1,26 @@
-package racing.model.car
+package racing.model
 
 import racing.exception.InvalidCarNameException
-import racing.service.generator.NumberGenerator
 
 class Car(
-    name: String = "",
-    position: Int = DEFAULT_POSITION,
+    position: Int,
+    val name: String,
+    private val engine: Engine
 ) {
-    val name: String = validateNameLength(name)
+
+    init {
+        validateNameLength(name)
+    }
+
+    constructor(name: String, engine: Engine): this(DEFAULT_POSITION, name, engine)
+    constructor(engine: Engine): this("", engine)
+    constructor(name: String): this(name, DEFAULT_ENGINE)
 
     var position: Int = position
         private set
 
-    fun move(
-        forwardLimit: Int = DEFAULT_FORWARD_LIMIT,
-        numberGenerator: NumberGenerator,
-    ) {
-        val number = numberGenerator.generator()
-        if (number >= forwardLimit) {
+    fun move(forwardLimit: Int = DEFAULT_FORWARD_LIMIT) {
+        if (engine.canMoveForward(forwardLimit)) {
             position++
         }
     }
@@ -33,5 +36,6 @@ class Car(
         const val DEFAULT_FORWARD_LIMIT = 4
         private const val MAX_NAME_LENGTH = 5
         private const val DEFAULT_POSITION = 0
+        val DEFAULT_ENGINE = Engine()
     }
 }

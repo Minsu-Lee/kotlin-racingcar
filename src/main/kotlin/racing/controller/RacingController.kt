@@ -1,7 +1,6 @@
 package racing.controller
 
-import racing.model.car.Car
-import racing.service.generator.NumberGenerator
+import racing.model.Car
 
 interface RacingController {
     fun start()
@@ -12,8 +11,7 @@ interface RacingController {
 
     fun startRound(
         cars: List<Car>,
-        forwardLimit: Int = Car.DEFAULT_FORWARD_LIMIT,
-        numberGenerator: NumberGenerator,
+        forwardLimit: Int = Car.DEFAULT_FORWARD_LIMIT
     )
 
     fun getRaceWinners(cars: List<Car>): List<String>

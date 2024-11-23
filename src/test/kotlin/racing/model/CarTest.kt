@@ -1,4 +1,4 @@
-package racing.model.car
+package racing.model
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
@@ -7,22 +7,21 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import racing.exception.InvalidCarNameException
-import racing.service.generator.RandomGeneratorFactory
 
 class CarTest {
     @Test
     fun `주어진 횟수 동안 n대의 자동차는 4미만인 경우 멈춘다`() {
-        val numberGenerator = RandomGeneratorFactory.newInstance(0..3)
-        val car = Car()
-        car.move(numberGenerator = numberGenerator)
+        val engine = Engine(0..3)
+        val car = Car(engine = engine)
+        car.move()
         car.position shouldBe 0
     }
 
     @Test
     fun `주어진 횟수 동안 n대의 자동차는 4이상인 경우 전진한다`() {
-        val numberGenerator = RandomGeneratorFactory.newInstance(4..9)
-        val car = Car()
-        car.move(numberGenerator = numberGenerator)
+        val engine = Engine(4..9)
+        val car = Car(engine = engine)
+        car.move()
         car.position shouldBe 1
     }
 
@@ -32,12 +31,9 @@ class CarTest {
         randomMin: Int,
         randomMax: Int,
     ) {
-        val numberGenerator =
-            RandomGeneratorFactory.newInstance(
-                randomMin..randomMax,
-            )
-        val car = Car()
-        car.move(numberGenerator = numberGenerator)
+        val engine = Engine(randomMin..randomMax)
+        val car = Car(engine = engine)
+        car.move()
         car.position shouldBe 0
     }
 
@@ -47,9 +43,9 @@ class CarTest {
         randomMin: Int,
         randomMax: Int,
     ) {
-        val numberGenerator = RandomGeneratorFactory.newInstance(randomMin..randomMax)
-        val car = Car()
-        car.move(numberGenerator = numberGenerator)
+        val engine = Engine(randomMin..randomMax)
+        val car = Car(engine = engine)
+        car.move()
         car.position shouldBe 1
     }
 

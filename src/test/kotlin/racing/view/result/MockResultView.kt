@@ -1,6 +1,6 @@
 package racing.view.result
 
-import racing.model.car.Car
+import racing.model.Car
 
 class MockResultView(
     private val displayCarMovementBlock: (List<Car>)->Unit = {},
