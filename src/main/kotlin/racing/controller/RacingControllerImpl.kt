@@ -9,8 +9,8 @@ class RacingControllerImpl(private val gameContext: GameContext) : RacingControl
         with(gameContext) {
             val carNames = inputView.promptAndValidateCarNamesInput()
             val attemptCount = inputView.promptAndValidateAttemptCountInput()
-            val cars = createCars(carNames)
-            val racingTrack = RacingTrack(cars, attemptCount)
+            val cars = createCars(carNames = carNames)
+            val racingTrack = RacingTrack(cars = cars, attemptCount = attemptCount)
 
             resultView.printOutputTitle()
             val winner =
