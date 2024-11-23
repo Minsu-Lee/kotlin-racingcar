@@ -1,31 +1,24 @@
 package racing.controller
 
+import racing.GameContext
 import racing.model.Car
-import racing.model.CarFactory
-import racing.model.Engine
 import racing.model.RacingTrack
-import racing.view.input.InputView
-import racing.view.result.ResultView
 
-class RacingControllerImpl(
-    private val inputView: InputView,
-    private val resultView: ResultView,
-) : RacingController {
+class RacingControllerImpl(private val gameContext: GameContext) : RacingController {
     override fun start() {
-        val carNames = inputView.promptAndValidateCarNamesInput()
-        val attemptCount = inputView.promptAndValidateAttemptCountInput()
-        val cars = CarFactory.createCars(carNames, ::engineProvider)
-        val racingTrack = RacingTrack(cars, attemptCount)
+        with(gameContext) {
+            val carNames = inputView.promptAndValidateCarNamesInput()
+            val attemptCount = inputView.promptAndValidateAttemptCountInput()
+            val cars = createCars(carNames)
+            val racingTrack = RacingTrack(cars, attemptCount)
 
-        resultView.printOutputTitle()
-        with(racingTrack) {
-            startRound(Car.DEFAULT_FORWARD_LIMIT, resultView::displayCarMovement)
-            val winner = getRaceWinners()
+            resultView.printOutputTitle()
+            val winner =
+                racingTrack.startRound(
+                    forwardLimit = Car.DEFAULT_FORWARD_LIMIT,
+                    onRoundProgress = resultView::displayCarMovement,
+                )
             resultView.displayRaceWinners(winner)
         }
-    }
-
-    private fun engineProvider(range: IntRange = Engine.DEFAULT_RANDOM_RANGE): Engine {
-        return Engine(range)
     }
 }

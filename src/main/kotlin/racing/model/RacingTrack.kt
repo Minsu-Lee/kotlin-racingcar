@@ -6,26 +6,24 @@ class RacingTrack(
 ) {
     fun startRound(
         forwardLimit: Int,
-        block: (Car, Boolean) -> Unit = { _, _ -> },
-    ) {
+        onRoundProgress: (car: Car, hasRoundEnded: Boolean) -> Unit = { _, _ -> },
+    ): List<Car> {
         repeat(attemptCount) {
             cars.forEachIndexed { index, car ->
                 car.move(forwardLimit)
 
-                val hasRoundEnded = hasRoundEnded(index)
-                block(car, hasRoundEnded)
+                val hasRoundEnded = cars.size.minus(1) <= index
+                onRoundProgress(car, hasRoundEnded)
             }
         }
+
+        return getRaceWinners()
     }
 
-    private fun hasRoundEnded(index: Int): Boolean {
-        return cars.size.minus(1) <= index
-    }
-
-    fun getRaceWinners(): List<String> {
-        val groupedByPosition = cars.groupBy { it.position }
+    private fun getRaceWinners(): List<Car> {
+        val validCars = cars.filter { it.position > 0 }
+        val groupedByPosition = validCars.groupBy { it.position }
         val maxPosition = groupedByPosition.keys.maxOrNull()
-        val target = groupedByPosition[maxPosition]?.filter { it.position > 0 }
-        return target?.map { it.name } ?: emptyList()
+        return groupedByPosition[maxPosition] ?: emptyList()
     }
 }

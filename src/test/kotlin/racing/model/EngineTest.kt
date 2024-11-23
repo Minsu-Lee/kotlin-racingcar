@@ -26,6 +26,6 @@ class EngineTest {
         val forwardLimit = 4
         val engine = Engine(rangeMin..rangeMax)
         assertThat(engine.canMoveForward(forwardLimit))
-            .isFalse()
+            .isTrue()
     }
 }

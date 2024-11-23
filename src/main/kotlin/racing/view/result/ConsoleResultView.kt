@@ -29,8 +29,8 @@ internal class ConsoleResultView(
         return "$symbol".repeat(position)
     }
 
-    override fun displayRaceWinners(carNames: List<String>) {
-        val winners = carNames.joinToString(DELIMITER_COMMA)
+    override fun displayRaceWinners(carNames: List<Car>) {
+        val winners = carNames.joinToString(DELIMITER_COMMA) { it.name }
         println("${winners}가 최종 우승했습니다.")
     }
 

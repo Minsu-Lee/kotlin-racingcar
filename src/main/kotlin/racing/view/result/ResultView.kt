@@ -10,5 +10,5 @@ interface ResultView {
         hasRoundEnded: Boolean,
     )
 
-    fun displayRaceWinners(carNames: List<String>)
+    fun displayRaceWinners(carNames: List<Car>)
 }
