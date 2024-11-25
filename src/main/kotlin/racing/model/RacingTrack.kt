@@ -4,9 +4,7 @@ class RacingTrack(
     private val cars: List<Car>,
     private val attemptCount: Int,
 ) {
-    fun startRound(
-        onRoundProgress: (car: Car, hasRoundEnded: Boolean) -> Unit = { _, _ -> },
-    ): List<Car> {
+    fun startRound(onRoundProgress: (car: Car, hasRoundEnded: Boolean) -> Unit = { _, _ -> }) {
         repeat(attemptCount) {
             cars.forEachIndexed { index, car ->
                 car.move()
@@ -15,11 +13,9 @@ class RacingTrack(
                 onRoundProgress(car, hasRoundEnded)
             }
         }
-
-        return getRaceWinners()
     }
 
-    private fun getRaceWinners(): List<Car> {
+    fun getRaceWinners(): List<Car> {
         val validCars = cars.filter { it.position > 0 }
         val groupedByPosition = validCars.groupBy { it.position }
         val maxPosition = groupedByPosition.keys.maxOrNull()

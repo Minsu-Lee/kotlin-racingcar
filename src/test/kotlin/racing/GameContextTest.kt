@@ -12,8 +12,8 @@ class GameContextTest {
         strings = [
             "aaa,bbb,ccc",
             "aaa,bbb,ccc,ddd",
-            "aaa,bbb,ccc,ddd,eee"
-        ]
+            "aaa,bbb,ccc,ddd,eee",
+        ],
     )
     fun `입력 받은 자동차 이름 개수만큼 Car 객체 리스트를 생성한다`(input: String) {
         val inputView = ConsoleInputViewFactory.newInstance()

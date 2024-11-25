@@ -14,8 +14,10 @@ class RacingControllerImpl(private val gameContext: GameContext) : RacingControl
             val racingTrack = RacingTrack(cars = cars, attemptCount = attemptCount)
 
             resultView.printOutputTitle()
-            val winner =
-                racingTrack.startRound(resultView::displayCarMovement)
+            racingTrack.startRound()
+            resultView.displayCarMovement(cars, attemptCount)
+
+            val winner = racingTrack.getRaceWinners()
             resultView.displayRaceWinners(winner)
         }
     }

@@ -6,8 +6,8 @@ interface ResultView {
     fun printOutputTitle()
 
     fun displayCarMovement(
-        car: Car,
-        hasRoundEnded: Boolean,
+        cars: List<Car>,
+        attemptCount: Int,
     )
 
     fun displayRaceWinners(carNames: List<Car>)

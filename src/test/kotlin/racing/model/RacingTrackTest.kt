@@ -11,7 +11,8 @@ class RacingTrackTest {
         val carNames = input.split(",").map { it.trim() }
         val cars = CarFactory.createCars(carNames) { Engine(0..3) }
         val track = RacingTrack(cars, 1)
-        val winners = track.startRound()
+        track.startRound()
+        val winners = track.getRaceWinners()
         assertThat(winners.size)
             .isZero()
     }
@@ -22,7 +23,8 @@ class RacingTrackTest {
         val carNames = input.split(",").map { it.trim() }
         val cars = CarFactory.createCars(carNames) { Engine(4..9) }
         val track = RacingTrack(cars, 1)
-        val winners = track.startRound()
+        track.startRound()
+        val winners = track.getRaceWinners()
         assertThat(winners.size)
             .isEqualTo(carNames.size)
     }
