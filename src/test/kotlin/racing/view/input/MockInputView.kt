@@ -1,7 +1,15 @@
 package racing.view.input
 
-interface MockInputView : InputView {
-    fun inputCarNames(input: String?): List<String>
+class MockInputView(
+    private val carNames: List<String>,
+    private val attemptCount: Int,
+) : InputView {
 
-    fun inputNumber(input: String?): Int
+    override fun inputCarNames(): List<String> {
+        return carNames
+    }
+
+    override fun inputAttemptCount(): Int {
+        return attemptCount
+    }
 }

@@ -5,12 +5,11 @@ class RacingTrack(
     private val attemptCount: Int,
 ) {
     fun startRound(
-        forwardLimit: Int,
         onRoundProgress: (car: Car, hasRoundEnded: Boolean) -> Unit = { _, _ -> },
     ): List<Car> {
         repeat(attemptCount) {
             cars.forEachIndexed { index, car ->
-                car.move(forwardLimit)
+                car.move()
 
                 val hasRoundEnded = cars.size.minus(1) <= index
                 onRoundProgress(car, hasRoundEnded)

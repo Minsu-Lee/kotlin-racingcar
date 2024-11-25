@@ -1,7 +1,7 @@
 package racing.view.input
 
-interface InputView {
-    fun promptAndValidateCarNamesInput(): List<String>
+interface InputView: InputDisplayView {
+    fun inputCarNames(): List<String>
 
-    fun promptAndValidateAttemptCountInput(): Int
+    fun inputAttemptCount(): Int
 }

@@ -12,14 +12,12 @@ class Car(
     }
 
     constructor(name: String, engine: Engine) : this(DEFAULT_POSITION, name, engine)
-    constructor(engine: Engine) : this("", engine)
-    constructor(name: String) : this(name, DEFAULT_ENGINE)
 
     var position: Int = position
         private set
 
-    fun move(forwardLimit: Int = DEFAULT_FORWARD_LIMIT) {
-        if (engine.canMoveForward(forwardLimit)) {
+    fun move() {
+        if (engine.canMoveForward(DEFAULT_FORWARD_LIMIT)) {
             position++
         }
     }
