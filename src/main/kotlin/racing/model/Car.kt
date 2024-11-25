@@ -4,14 +4,13 @@ class Car(
     val name: String,
     private val engine: Engine,
 ) {
-    private val forwardRecords: MutableList<Int>
+    private val forwardRecords: MutableList<Int> = mutableListOf()
 
     val position: Int
         get() = forwardRecords.sum()
 
     init {
         CarValidator.validateNameLength(name)
-        forwardRecords = mutableListOf()
     }
 
     fun getPosition(attemptIndex: Int): Int {
