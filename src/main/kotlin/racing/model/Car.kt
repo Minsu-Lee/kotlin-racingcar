@@ -33,6 +33,5 @@ class Car(
         const val DEFAULT_FORWARD_LIMIT = 4
         private const val MAX_NAME_LENGTH = 5
         private const val DEFAULT_POSITION = 0
-        val DEFAULT_ENGINE = Engine()
     }
 }
