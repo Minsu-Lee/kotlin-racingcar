@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class EngineTest {
+class IntRangeEngineTest {
     @ParameterizedTest
     @CsvSource("0, 1", "0, 3", "2, 3")
     fun `랜덤 값이 4미만인 경우, 자동차는 정지합니다`(
@@ -12,8 +12,11 @@ class EngineTest {
         rangeMax: Int,
     ) {
         val forwardLimit = 4
-        val engine = Engine(rangeMin..rangeMax)
-        assertThat(engine.canMoveForward(forwardLimit))
+        val engine = IntRangeEngine(
+            forwardLimit = forwardLimit,
+            range = rangeMin..rangeMax,
+        )
+        assertThat(engine.canMoveForward())
             .isFalse()
     }
 
@@ -24,8 +27,11 @@ class EngineTest {
         rangeMax: Int,
     ) {
         val forwardLimit = 4
-        val engine = Engine(rangeMin..rangeMax)
-        assertThat(engine.canMoveForward(forwardLimit))
+        val engine = IntRangeEngine(
+            forwardLimit = forwardLimit,
+            range = rangeMin..rangeMax,
+        )
+        assertThat(engine.canMoveForward())
             .isTrue()
     }
 }

@@ -4,22 +4,19 @@ class Car(
     val name: String,
     private val engine: Engine,
 ) {
-    private val forwardRecords: MutableList<Int> = mutableListOf()
-
-    val position: Int
-        get() = forwardRecords.sum()
+    var position: Int
+        private set
 
     init {
+        position = 0
         CarValidator.validateNameLength(name)
     }
 
-    fun getPosition(attemptIndex: Int): Int {
-        return forwardRecords.take(attemptIndex + 1).sum()
-    }
-
     fun move() {
-        val canMoveForward = engine.canMoveForward(DEFAULT_FORWARD_LIMIT)
-        forwardRecords.add(if (canMoveForward) 1 else 0)
+        val canMoveForward = engine.canMoveForward()
+        if (canMoveForward) {
+            position++
+        }
     }
 
     companion object {

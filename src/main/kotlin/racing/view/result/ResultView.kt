@@ -5,10 +5,7 @@ import racing.model.Car
 interface ResultView {
     fun printOutputTitle()
 
-    fun displayCarMovement(
-        cars: List<Car>,
-        attemptCount: Int,
-    )
+    fun displayCarMovement(cars: List<Car>)
 
     fun displayRaceWinners(carNames: List<Car>)
 }
