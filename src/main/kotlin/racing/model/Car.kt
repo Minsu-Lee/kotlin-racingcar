@@ -14,7 +14,7 @@ class Car(
     }
 
     fun getPosition(attemptIndex: Int): Int {
-        return forwardRecords.subList(0, attemptIndex + 1).sum()
+        return forwardRecords.take(attemptIndex + 1).sum()
     }
 
     fun move() {
