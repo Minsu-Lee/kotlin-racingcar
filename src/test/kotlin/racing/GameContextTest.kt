@@ -3,8 +3,8 @@ package racing
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racing.view.input.ConsoleInputViewFactory
-import racing.view.result.ConsoleResultViewFactory
+import racing.view.input.MockInputView
+import racing.view.result.MockResultView
 
 class GameContextTest {
     @ParameterizedTest
@@ -16,10 +16,10 @@ class GameContextTest {
         ],
     )
     fun `입력 받은 자동차 이름 개수만큼 Car 객체 리스트를 생성한다`(input: String) {
-        val inputView = ConsoleInputViewFactory.newInstance()
-        val resultView = ConsoleResultViewFactory.newInstance()
+        val inputView = MockInputView(input.split(","), 1)
+        val resultView = MockResultView()
         val gameContext = GameContext(inputView, resultView)
-        val carNames = input.split(",")
+        val carNames = inputView.inputCarNames()
         val carList = gameContext.createCars(carNames)
         carNames.size shouldBe carList.size
         carNames.forEachIndexed { index, name ->
