@@ -6,9 +6,9 @@ import racing.model.RacingTrack
 class RacingControllerImpl(private val gameContext: GameContext) : RacingController {
     override fun start() {
         with(gameContext) {
-            inputView.displayCarNamesQuestion()
+            displayCarNamesQuestion()
             val carNames = inputView.inputCarNames()
-            inputView.displayAttemptCountQuestion()
+            displayAttemptCountQuestion()
             val attemptCount = inputView.inputAttemptCount()
             val cars = createCars(carNames = carNames)
             val racingTrack = RacingTrack(cars = cars, attemptCount = attemptCount)
@@ -21,5 +21,13 @@ class RacingControllerImpl(private val gameContext: GameContext) : RacingControl
             val winner = getRaceWinners(cars)
             resultView.displayRaceWinners(winner)
         }
+    }
+
+    private fun displayCarNamesQuestion() {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+    }
+
+    private fun displayAttemptCountQuestion() {
+        println("시도할 횟수는 몇 회인가요?")
     }
 }
