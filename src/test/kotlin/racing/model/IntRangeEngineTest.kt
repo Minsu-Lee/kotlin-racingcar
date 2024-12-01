@@ -12,7 +12,7 @@ class IntRangeEngineTest {
         rangeMax: Int,
     ) {
         val forwardLimit = 4
-        val engine = IntRangeEngine(
+        val engine = IntRangeEngineFactory.create(
             forwardLimit = forwardLimit,
             range = rangeMin..rangeMax,
         )
@@ -27,7 +27,7 @@ class IntRangeEngineTest {
         rangeMax: Int,
     ) {
         val forwardLimit = 4
-        val engine = IntRangeEngine(
+        val engine = IntRangeEngineFactory.create(
             forwardLimit = forwardLimit,
             range = rangeMin..rangeMax,
         )

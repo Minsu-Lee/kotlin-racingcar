@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource
 class CarTest {
     @Test
     fun `주어진 횟수 동안 n대의 자동차는 4미만인 경우 멈춘다`() {
-        val engine = IntRangeEngine(0..3)
+        val engine = IntRangeEngineFactory.create(0..3)
         val car = Car("", engine)
         car.move()
         car.position shouldBe 0
@@ -16,7 +16,7 @@ class CarTest {
 
     @Test
     fun `주어진 횟수 동안 n대의 자동차는 4이상인 경우 전진한다`() {
-        val engine = IntRangeEngine(4..9)
+        val engine = IntRangeEngineFactory.create(4..9)
         val car = Car("", engine)
         car.move()
         car.position shouldBe 1

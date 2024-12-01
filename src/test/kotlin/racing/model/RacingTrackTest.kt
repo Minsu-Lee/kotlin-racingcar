@@ -9,7 +9,7 @@ class RacingTrackTest {
     @ValueSource(strings = ["aa, bb, cc, dd", "aaa, bbb, ccc", "a, b, c"])
     fun `우승자가 없는 경우 테스트`(input: String) {
         val carNames = input.split(",").map { it.trim() }
-        val cars = CarFactory.createCars(carNames) { IntRangeEngine(0..3) }
+        val cars = CarFactory.createCars(carNames) { IntRangeEngineFactory.create(0..3) }
         RacingTrack(cars, 1).startRound()
         val winners = WinnerDecider.decideWinners(cars)
         assertThat(winners.size)
@@ -20,7 +20,7 @@ class RacingTrackTest {
     @ValueSource(strings = ["aa, bb, cc, dd", "aaa, bbb, ccc", "a, b, c"])
     fun `참여 자동차가 모두 우승한 경우 테스트`(input: String) {
         val carNames = input.split(",").map { it.trim() }
-        val cars = CarFactory.createCars(carNames) { IntRangeEngine(4..9) }
+        val cars = CarFactory.createCars(carNames) { IntRangeEngineFactory.create(4..9) }
         RacingTrack(cars, 1).startRound()
         val winners = WinnerDecider.decideWinners(cars)
         assertThat(winners.size)

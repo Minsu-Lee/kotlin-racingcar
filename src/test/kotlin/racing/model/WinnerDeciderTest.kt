@@ -9,7 +9,7 @@ class WinnerDeciderTest {
         val carNames = listOf("CarA", "CarB", "CarC")
         val cars =
             CarFactory.createCars(carNames) {
-                IntRangeEngine(range = 4..4)
+                IntRangeEngineFactory.create(4..9)
             }
         cars.forEach { car ->
             when (car.name) {
@@ -28,7 +28,7 @@ class WinnerDeciderTest {
         val carNames = listOf("CarA", "CarB", "CarC")
         val cars =
             CarFactory.createCars(carNames) {
-                IntRangeEngine(range = 4..4)
+                IntRangeEngineFactory.create(4..4)
             }
         cars.forEach { car ->
             when (car.name) {
@@ -55,7 +55,7 @@ class WinnerDeciderTest {
         val carNames = listOf("CarA", "CarB", "CarC")
         val cars =
             CarFactory.createCars(carNames) {
-                IntRangeEngine(range = 0 until 4)
+                IntRangeEngineFactory.create(0 until 4)
             }
 
         cars.forEach { car ->

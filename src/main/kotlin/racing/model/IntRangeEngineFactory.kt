@@ -1,10 +1,10 @@
 package racing.model
 
-object EngineFactory {
+object IntRangeEngineFactory {
     fun create(
         range: IntRange = IntRangeEngine.DEFAULT_RANDOM_RANGE,
         forwardLimit: Int = Car.DEFAULT_FORWARD_LIMIT,
-    ): IntRangeEngine {
+    ): Engine {
         return IntRangeEngine(range, forwardLimit)
     }
 }
