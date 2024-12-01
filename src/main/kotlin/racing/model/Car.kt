@@ -13,8 +13,7 @@ class Car(
     }
 
     fun move() {
-        val canMoveForward = engine.canMoveForward()
-        if (canMoveForward) {
+        if (engine.canMoveForward()) {
             position++
         }
     }
