@@ -1,16 +1,16 @@
 package racing.view.result
 
-import racing.model.Car
+import racing.model.Cars
 
 class MockResultView(
-    private val displayCarMovementBlock: (cars: List<Car>) -> Unit = { _ -> },
-    private val displayRaceWinnersBlock: (List<Car>) -> Unit = {},
+    private val displayCarMovementBlock: (cars: Cars) -> Unit = { _ -> },
+    private val displayRaceWinnersBlock: (cars: Cars) -> Unit = {},
 ) : ResultView {
     override fun printOutputTitle() { }
 
-    override fun displayCarMovement(cars: List<Car>) {
+    override fun displayCarMovement(cars: Cars) {
         displayCarMovementBlock(cars)
     }
 
-    override fun displayRaceWinners(carNames: List<Car>) = displayRaceWinnersBlock(carNames)
+    override fun displayRaceWinners(cars: Cars) = displayRaceWinnersBlock(cars)
 }

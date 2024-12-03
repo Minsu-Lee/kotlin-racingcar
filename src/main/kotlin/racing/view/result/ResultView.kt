@@ -1,11 +1,11 @@
 package racing.view.result
 
-import racing.model.Car
+import racing.model.Cars
 
 interface ResultView {
     fun printOutputTitle()
 
-    fun displayCarMovement(cars: List<Car>)
+    fun displayCarMovement(cars: Cars)
 
-    fun displayRaceWinners(carNames: List<Car>)
+    fun displayRaceWinners(cars: Cars)
 }

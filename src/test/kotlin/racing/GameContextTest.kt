@@ -20,10 +20,10 @@ class GameContextTest {
         val resultView = MockResultView()
         val gameContext = GameContext(inputView, resultView)
         val carNames = inputView.inputCarNames()
-        val carList = gameContext.createCars(carNames)
-        carNames.size shouldBe carList.size
+        val cars = gameContext.createCars(carNames)
+        carNames.size shouldBe cars.size
         carNames.forEachIndexed { index, name ->
-            carList[index].name shouldBe name
+            cars[index].name shouldBe name
         }
     }
 }

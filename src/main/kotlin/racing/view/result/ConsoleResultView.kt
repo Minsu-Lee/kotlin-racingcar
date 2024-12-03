@@ -1,6 +1,6 @@
 package racing.view.result
 
-import racing.model.Car
+import racing.model.Cars
 
 internal class ConsoleResultView(
     private val moveSymbol: Char,
@@ -10,7 +10,7 @@ internal class ConsoleResultView(
         println("실행결과")
     }
 
-    override fun displayCarMovement(cars: List<Car>) {
+    override fun displayCarMovement(cars: Cars) {
         cars.forEach { car ->
             val carName = car.name
             val position = car.position
@@ -27,8 +27,8 @@ internal class ConsoleResultView(
         return "$symbol".repeat(position)
     }
 
-    override fun displayRaceWinners(carNames: List<Car>) {
-        val winners = carNames.joinToString(DELIMITER_COMMA) { it.name }
+    override fun displayRaceWinners(cars: Cars) {
+        val winners = cars.joinToString(DELIMITER_COMMA) { it.name }
         println("${winners}가 최종 우승했습니다.")
     }
 

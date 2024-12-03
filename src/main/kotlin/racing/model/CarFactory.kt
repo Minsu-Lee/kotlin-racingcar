@@ -3,9 +3,13 @@ package racing.model
 object CarFactory {
     fun createCars(
         carNames: List<String>,
-        engineProvider: () -> Engine,
-    ): List<Car> {
-        val engine = engineProvider()
-        return carNames.map { Car(it, engine) }
+        range: IntRange = IntRangeEngine.DEFAULT_RANDOM_RANGE,
+        forwardLimit: Int = Car.DEFAULT_FORWARD_LIMIT
+    ): Cars {
+        val carList = carNames.map {
+            val engine = IntRangeEngineFactory.create(range, forwardLimit)
+            Car(it, engine)
+        }
+        return Cars(carList)
     }
 }

@@ -1,10 +1,6 @@
 package racing
 
-import racing.model.Car
-import racing.model.CarFactory
-import racing.model.IntRangeEngine
-import racing.model.IntRangeEngineFactory
-import racing.model.WinnerDecider
+import racing.model.*
 import racing.view.input.InputView
 import racing.view.result.ResultView
 
@@ -16,13 +12,7 @@ class GameContext(
         carNames: List<String>,
         range: IntRange = IntRangeEngine.DEFAULT_RANDOM_RANGE,
         forwardLimit: Int = Car.DEFAULT_FORWARD_LIMIT,
-    ): List<Car> {
-        return CarFactory.createCars(carNames) {
-            IntRangeEngineFactory.create(range, forwardLimit)
-        }
-    }
-
-    fun getRaceWinners(cars: List<Car>): List<Car> {
-        return WinnerDecider.decideWinners(cars)
+    ): Cars {
+        return CarFactory.createCars(carNames, range, forwardLimit)
     }
 }
