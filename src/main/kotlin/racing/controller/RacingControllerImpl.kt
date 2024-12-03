@@ -1,29 +1,29 @@
 package racing.controller
 
-import racing.GameContext
 import racing.model.CarFactory
 import racing.model.RacingTrack
+import racing.view.input.InputView
+import racing.view.result.ResultView
 
 class RacingControllerImpl(
-    private val gameContext: GameContext,
+    private val inputView: InputView,
+    private val resultView: ResultView,
 ) : RacingController {
     override fun start() {
-        with(gameContext) {
-            displayCarNamesQuestion()
-            val carNames = inputView.inputCarNames()
-            displayAttemptCountQuestion()
-            val attemptCount = inputView.inputAttemptCount()
-            val cars = CarFactory.createCars(carNames)
-            val racingTrack = RacingTrack(cars = cars, attemptCount = attemptCount)
+        displayCarNamesQuestion()
+        val carNames = inputView.inputCarNames()
+        displayAttemptCountQuestion()
+        val attemptCount = inputView.inputAttemptCount()
+        val racingCars = CarFactory.createCars(carNames)
+        val racingTrack = RacingTrack(racingCars = racingCars, attemptCount = attemptCount)
 
-            resultView.printOutputTitle()
-            racingTrack.startRound {
-                resultView.displayCarMovement(cars)
-            }
-
-            val winner = cars.getRaceWinners()
-            resultView.displayRaceWinners(winner)
+        resultView.printOutputTitle()
+        racingTrack.startRound {
+            resultView.displayCarMovement(racingCars)
         }
+
+        val winner = racingCars.getRaceWinners()
+        resultView.displayRaceWinners(winner)
     }
 
     private fun displayCarNamesQuestion() {

@@ -1,17 +1,17 @@
 package racing.model
 
-class Cars(private val carList: List<Car>): List<Car> by carList {
+class RacingCars(private val carList: List<Car>): List<Car> by carList {
     fun moveAll() {
         carList.forEach {
             it.move()
         }
     }
 
-    fun getRaceWinners(): Cars {
+    fun getRaceWinners(): RacingCars {
         val validCars = carList.filter { it.position > 0 }
         val groupedByPosition = validCars.groupBy { it.position }
         val maxPosition = groupedByPosition.keys.maxOrNull()
         val carList = groupedByPosition[maxPosition] ?: emptyList()
-        return Cars(carList)
+        return RacingCars(carList)
     }
 }

@@ -1,12 +1,12 @@
 package racing.model
 
 class RacingTrack(
-    private val cars: Cars,
+    private val racingCars: RacingCars,
     private val attemptCount: Int,
 ) {
     fun startRound(onRoundProgress: () -> Unit = {}) {
         repeat(attemptCount) {
-            cars.moveAll()
+            racingCars.moveAll()
             onRoundProgress()
         }
     }

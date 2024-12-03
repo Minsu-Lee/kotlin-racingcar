@@ -3,7 +3,7 @@ package racing.model
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-class CarsTest {
+class RacingCarsTest {
     @Test
     fun `가장 멀리 이동한 자동차를 반환`() {
         val carNames = listOf("CarA", "CarB", "CarC")
