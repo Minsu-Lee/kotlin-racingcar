@@ -1,6 +1,6 @@
 package racing.model
 
-class Cars(val carList: List<Car>): List<Car> by carList {
+class Cars(private val carList: List<Car>): List<Car> by carList {
     fun moveAll() {
         carList.forEach {
             it.move()
